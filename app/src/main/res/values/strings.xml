@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CornAche</string>
+    <string name="analyze">Analyze</string>
+    <string name="analisa_penyakit">analisa penyakit</string>
+    <string name="obrolan_grup">obrolan grup</string>
+    <string name="riwayat_analisa">riwayat analisa</string>
+    <string name="edit_profil">edit profil</string>
+    <string name="register">Register</string>
+    <string name="submit">Submit</string>
+    <string name="enter_password">Enter password</string>
+    <string name="password">password</string>
+    <string name="enter_username">Enter username</string>
+    <string name="username">username</string>
+    <string name="login">Login</string>
+    <string name="re_enter_password">Re-Enter Password</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+</resources>

@@ -26,5 +26,15 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+        binding .buttonObrolan.setOnClickListener {
+            Intent(this@MainActivity, ChatActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+        binding.buttonRiwayat.setOnClickListener {
+            Intent(this@MainActivity, HistoryActivity::class.java).also {
+                startActivity(it)
+            }
+        }
     }
 }

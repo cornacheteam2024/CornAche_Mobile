@@ -18,4 +18,8 @@
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="registerlabel">Belum punya akun?</string>
+    <string name="history">History</string>
+    <string name="discussion_chat">Discussion Chat</string>
+    <string name="searchHint">Search</string>
+    <string name="time_chat">create at</string>
 </resources>

@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">CornAche</string>
     <string name="analyze">Analyze</string>
-    <string name="analisa_penyakit">analisa penyakit</string>
-    <string name="obrolan_grup">obrolan grup</string>
-    <string name="riwayat_analisa">riwayat analisa</string>
-    <string name="edit_profil">edit profil</string>
+    <string name="analisa_penyakit">Analisa penyakit</string>
+    <string name="obrolan_grup">Obrolan grup</string>
+    <string name="riwayat_analisa">Riwayat analisa</string>
+    <string name="edit_profil">Edit profil</string>
     <string name="register">Register</string>
     <string name="submit">Submit</string>
     <string name="enter_password">Enter password</string>
@@ -17,4 +17,9 @@
     <string name="save">Save</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="registerlabel">Belum punya akun?</string>
+    <string name="history">History</string>
+    <string name="discussion_chat">Discussion Chat</string>
+    <string name="searchHint">Search</string>
+    <string name="time_chat">create at</string>
 </resources>

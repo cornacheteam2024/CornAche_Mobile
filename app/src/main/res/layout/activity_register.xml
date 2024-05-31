@@ -8,8 +8,10 @@
 
     <!-- Container for the login form -->
     <LinearLayout
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:id="@+id/loginContainer"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#FFFF00"
@@ -18,8 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.75">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <!-- Login title -->
         <TextView
@@ -42,7 +43,7 @@
         <!-- Username input -->
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@drawable/edit_text_background"
             android:padding="8dp"
             android:textColor="#000000"
@@ -61,7 +62,7 @@
         <!-- Password input -->
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@drawable/edit_text_background"
             android:padding="8dp"
             android:textColor="#000000"
@@ -80,7 +81,7 @@
         <!-- Re-Enter Password input -->
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@drawable/edit_text_background"
             android:padding="8dp"
             android:textColor="#000000"
@@ -91,7 +92,7 @@
         <!-- Submit button -->
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:text="@string/submit"
             android:textColor="#000000"
             android:backgroundTint="#FFA500"
@@ -103,7 +104,7 @@
         <!-- Register button -->
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:text="@string/login"
             android:textColor="#000000"
             android:backgroundTint="#FFA500"

@@ -22,4 +22,16 @@
     <string name="discussion_chat">Discussion Chat</string>
     <string name="searchHint">Search</string>
     <string name="time_chat">create at</string>
+    <string name="common_rust">
+        Gejala penyakit karat memiliki ciri khas, yaitu diawalin dengan adanya lesiio kecil pada bagian daun, selanjutnya melingkar sampai memanjang. Ketika lesio berkembang, cendawan keluar dari permukaan daun dan lesio menjadi lebih memanjang dan biasanya terjadi halo kuning. Gejala lanjut terlihat adanya bisul (pustul) pada kedua permukaan daun bagian atas dan bawah dengan warna coklat kemerahan tersebar pada permukaan daun dan berubah warna menjadi hitam kecoklatan setelah teliospora berkembang seperti yang terlihat pada gambar 1. Jika infeksi penyakit dibiarkan maka akan menyebabkan daun menjadi kering dan tanaman mati.
+    </string>
+    <string name="healty">
+        Jagung sehat tidak terkena penyakit
+    </string>
+    <string name="gray_leaf">
+        Penyakit bercak daun abu abu disebabkan oleh jamur Cercospora zeae-maydis. Jamur ini bertahan dalam sisa sisa tanaman di tanah dalam Waktu yang lama. Selama musim semi, spora dibawa ke daun bagian Bawah oleh percikan air hujan dan angin. Siklus hidupnya didukun oleh suhu tinggi (25 - 30 C), kelembaban tinggi (embun, kabut) dan basahnya daun untuk jangka Waktu yang lama. Cuaca panas dan kering menghambat perkembangannya. Gejalanya sedikit berbeda antar varietas tanaman yang berbeda. Jamur menyelesaikan siklus hidupnya(dari infeksi ke produksi spora baru) dalam 14 - 21 hari pada varietas yang rentan dan dalam 21 - 28 hari dalam varietas yang tahan.
+    </string>
+    <string name="blight">
+        blight
+    </string>
 </resources>

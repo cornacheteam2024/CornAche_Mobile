@@ -1,10 +1,17 @@
 package com.example.cornache.data.repository
 
-import com.example.cornache.data.api.ApiService
+import androidx.lifecycle.LiveData
+import com.example.cornache.data.api.PredictApiService
 import java.io.File
 import androidx.lifecycle.liveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
+import com.example.cornache.data.HistoryPagingSource
 import com.example.cornache.data.ResultState
 import com.example.cornache.data.api.ErrorResponse
+import com.example.cornache.data.api.Prediction
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -13,7 +20,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
 
 class UserRepository private constructor(
-    private val apiService: ApiService
+    private val predictApiService: PredictApiService
 ){
     fun analyzeImage(imageFile: File, userId:String) = liveData {
         emit(ResultState.Loading)
@@ -25,7 +32,7 @@ class UserRepository private constructor(
             requestImageFile
         )
         try {
-            val successResponse = apiService.uploadImage(multipartBody,requestBody)
+            val successResponse = predictApiService.uploadImage(multipartBody,requestBody)
             emit(ResultState.Success(successResponse))
         }catch (e:HttpException){
             val errorBody = e.response()?.errorBody()?.string()
@@ -35,7 +42,7 @@ class UserRepository private constructor(
     }
     companion object{
         fun getInstance(
-            apiService: ApiService
-        ) = UserRepository(apiService)
+            predictApiService: PredictApiService
+        ) = UserRepository(predictApiService)
     }
 }

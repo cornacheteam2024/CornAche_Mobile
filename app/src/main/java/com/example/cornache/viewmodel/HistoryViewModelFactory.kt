@@ -7,18 +7,18 @@ import com.example.cornache.data.repository.HistoryRepository
 import com.example.cornache.data.repository.UserRepository
 import com.example.cornache.di.Injection
 
-class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
+class HistoryViewModelFactory(private val historyRepository: HistoryRepository) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
-            modelClass.isAssignableFrom(AnalyzeViewModel::class.java) ->{
-                AnalyzeViewModel(repository) as T
+            modelClass.isAssignableFrom(HistoryViewModel::class.java) ->{
+                HistoryViewModel(historyRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }
 
     companion object {
-        fun getInstance(context: Context) = ViewModelFactory(Injection.provideRepository(context))
+        fun getInstance(context: Context) = HistoryViewModelFactory(Injection.historyRepository(context))
     }
 }

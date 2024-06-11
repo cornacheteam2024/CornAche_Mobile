@@ -15,7 +15,6 @@ data class FileUploadResponse(
 )
 
 data class Prediction(
-
 	@field:SerializedName("image")
 	val image: String? = null,
 

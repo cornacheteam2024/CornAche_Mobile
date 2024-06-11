@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF9C4"
+    tools:context=".ResultActivity">
+
+    <ImageView
+        android:id="@+id/ivResult"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:src="@drawable/baseline_image_24"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="15dp"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_result"
+        android:layout_marginTop="29dp"
+        android:paddingTop="12dp"
+        android:layout_marginHorizontal="21dp"
+        android:layout_below="@id/ivResult">
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ivResult"
+            android:layout_above="@id/webView">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tvDisseaseName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Penyakit"
+                    android:textSize="26sp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="9dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nam vel ipsum at velit ullamcorper commodo. Curabitur in tortor nec purus interdum tincidunt. Integer nec urna ac lacus dictum fringilla. Suspendisse potenti. Proin eget urna sapien. "
+                    android:layout_marginHorizontal="30dp"
+                    android:textSize="17sp"
+                    android:layout_marginTop="7dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cara penanganan"
+                    android:layout_marginStart="18dp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ini contoh cara penangan penyakitnya"
+                    android:textSize="17sp"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="7dp"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="12dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

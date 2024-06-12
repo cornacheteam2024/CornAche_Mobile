@@ -14,9 +14,21 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 
 class LoginPreference private constructor(private val dataStore: DataStore<Preferences>) {
 
-    fun getLoginStatus(): Flow<Boolean?> {
+    fun getSession(): Flow<UserModel> {
         return dataStore.data.map { preferences ->
-            preferences[IS_LOGIN_KEY]
+            UserModel(
+                preferences[USER_ID_KEY] ?: "",
+                preferences[TOKEN_KEY] ?: "",
+                preferences[IS_LOGIN_KEY] ?: false
+            )
+        }
+    }
+
+    suspend fun saveSession(userModel: UserModel){
+        dataStore.edit { preferences ->
+            preferences[USER_ID_KEY] = userModel.userId
+            preferences[TOKEN_KEY] = userModel.token
+            preferences[IS_LOGIN_KEY] = true
         }
     }
 

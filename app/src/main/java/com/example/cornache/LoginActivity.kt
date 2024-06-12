@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
+import com.example.cornache.data.UserModel
 import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityLoginBinding
 import com.example.cornache.viewmodel.LoginViewModel
@@ -55,24 +56,18 @@ class LoginActivity : AppCompatActivity() {
 
                                     Log.d("LoginActivity", "Response: ${response}")
 
-                                    val token = response.token
-                                    if (token != null) {
-                                        viewModel.saveState(token.toString())
-                                        AlertDialog.Builder(this).apply {
-                                            setTitle(getString(R.string.success))
-                                            setMessage(getString(R.string.welcome_back) + " " + "${response.username}")
-                                            setPositiveButton(getString(R.string.dialog_continue)) { _, _ ->
-                                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                                                startActivity(intent)
-                                                finish()
-                                            }
-                                            create()
-                                            show()
+                                    viewModel.saveState(UserModel(it.data.userId.toString(),it.data.token.toString()))
+                                    AlertDialog.Builder(this).apply {
+                                        setTitle(getString(R.string.success))
+                                        setMessage(getString(R.string.welcome_back) + " " + "${response.username}")
+                                        setPositiveButton(getString(R.string.dialog_continue)) { _, _ ->
+                                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                            startActivity(intent)
+                                            finish()
                                         }
-                                    } else {
-                                        Log.e("LoginActivity", "Token is null")
-                                        // Handle the null token case appropriately
+                                        create()
+                                        show()
                                     }
                                 }
                                 is ResultState.Error -> {

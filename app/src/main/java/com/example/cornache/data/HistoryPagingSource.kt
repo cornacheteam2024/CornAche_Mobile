@@ -4,10 +4,11 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.cornache.data.api.retrofit.ApiService
 import com.example.cornache.data.api.response.Prediction
+import com.example.cornache.data.api.retrofit.HistoryApiService
 import okio.IOException
 import retrofit2.HttpException
 
-class HistoryPagingSource(private val apiService: ApiService) : PagingSource<Int, Prediction>() {
+class HistoryPagingSource(private val apiService: HistoryApiService, private val userId:String) : PagingSource<Int, Prediction>() {
     override fun getRefreshKey(state: PagingState<Int, Prediction>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage =state.closestPageToPosition(anchorPosition)
@@ -18,7 +19,7 @@ class HistoryPagingSource(private val apiService: ApiService) : PagingSource<Int
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Prediction> {
         return try {
             val position =params.key ?:INITIAL_PAGE_INDEX
-            val userId = "342343jghghj5435-345hv43-bn3b4"
+            val userId = ""
             val responseData = apiService.getHistory(userId,position)
 
             LoadResult.Page(

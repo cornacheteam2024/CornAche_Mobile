@@ -1,9 +1,6 @@
 package com.example.cornache
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Camera
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -13,26 +10,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.example.cornache.CameraActivity.Companion.CAMERAX_RESULT
+import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
-import com.example.cornache.data.api.ErrorResponse
-import com.example.cornache.data.api.PredictApiConfig
+import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityAnalyzeBinding
 import com.example.cornache.viewmodel.AnalyzeViewModel
 import com.example.cornache.viewmodel.ViewModelFactory
-import com.google.gson.Gson
-import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.HttpException
 
 class AnalyzeActivity : AppCompatActivity() {
     private lateinit var binding:ActivityAnalyzeBinding
@@ -44,7 +30,10 @@ class AnalyzeActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityAnalyzeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val factory :ViewModelFactory = ViewModelFactory.getInstance(this)
+        val factory :ViewModelFactory = ViewModelFactory.getInstance(
+            this,
+            LoginPreference.getInstance(dataStore)
+        )
         viewModel = ViewModelProvider(this,factory)[AnalyzeViewModel::class.java]
         binding.btnGallery.setOnClickListener { startGallery() }
         binding.btnCamera.setOnClickListener { startCameraX() }

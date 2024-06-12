@@ -1,17 +1,10 @@
 package com.example.cornache.data.repository
 
-import androidx.lifecycle.LiveData
-import com.example.cornache.data.api.PredictApiService
+import com.example.cornache.data.api.retrofit.PredictApiService
 import java.io.File
 import androidx.lifecycle.liveData
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.liveData
-import com.example.cornache.data.HistoryPagingSource
 import com.example.cornache.data.ResultState
-import com.example.cornache.data.api.ErrorResponse
-import com.example.cornache.data.api.Prediction
+import com.example.cornache.data.api.response.ErrorResponse
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -36,7 +29,7 @@ class UserRepository private constructor(
             emit(ResultState.Success(successResponse))
         }catch (e:HttpException){
             val errorBody = e.response()?.errorBody()?.string()
-            val errorResponse = Gson().fromJson(errorBody,ErrorResponse::class.java)
+            val errorResponse = Gson().fromJson(errorBody, ErrorResponse::class.java)
             emit(ResultState.Error(errorResponse.message.toString()))
         }
     }

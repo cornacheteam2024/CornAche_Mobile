@@ -34,4 +34,7 @@
     <string name="blight">
         blight
     </string>
+    <string name="success">login berhasil</string>
+    <string name="welcome_back">selamat datang kembali</string>
+    <string name="dialog_continue">login berhasil</string>
 </resources>

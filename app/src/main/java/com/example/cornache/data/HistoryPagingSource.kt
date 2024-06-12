@@ -2,13 +2,12 @@ package com.example.cornache.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.cornache.data.api.ApiService
-import com.example.cornache.data.api.PredictApiService
-import com.example.cornache.data.api.Prediction
+import com.example.cornache.data.api.retrofit.ApiService
+import com.example.cornache.data.api.response.Prediction
 import okio.IOException
 import retrofit2.HttpException
 
-class HistoryPagingSource(private val apiService: ApiService) : PagingSource<Int,Prediction>() {
+class HistoryPagingSource(private val apiService: ApiService) : PagingSource<Int, Prediction>() {
     override fun getRefreshKey(state: PagingState<Int, Prediction>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage =state.closestPageToPosition(anchorPosition)

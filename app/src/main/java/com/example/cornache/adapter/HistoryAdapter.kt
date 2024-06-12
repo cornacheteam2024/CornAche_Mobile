@@ -4,16 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.cornache.data.api.History
-import com.example.cornache.data.api.Prediction
+import com.example.cornache.data.api.response.Prediction
 import com.example.cornache.databinding.ItemHistoryBinding
 
 class HistoryListAdapter : PagingDataAdapter<Prediction, HistoryListAdapter.MyViewHolder>(DIFF_CALLBACK){
     class MyViewHolder(private val binding:ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data:Prediction){
+        fun bind(data: Prediction){
             binding.apply {
                 Glide.with(itemView)
                     .load(data.image)

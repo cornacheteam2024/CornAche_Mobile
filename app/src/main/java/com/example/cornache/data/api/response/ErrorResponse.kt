@@ -1,4 +1,4 @@
-package com.example.cornache.data.api
+package com.example.cornache.data.api.response
 
 import com.google.gson.annotations.SerializedName
 

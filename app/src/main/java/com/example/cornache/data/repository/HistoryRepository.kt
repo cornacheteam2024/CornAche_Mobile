@@ -6,9 +6,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.example.cornache.data.HistoryPagingSource
-import com.example.cornache.data.api.ApiService
-import com.example.cornache.data.api.PredictApiService
-import com.example.cornache.data.api.Prediction
+import com.example.cornache.data.api.retrofit.ApiService
+import com.example.cornache.data.api.response.Prediction
 
 class HistoryRepository private constructor(
     private val apiService: ApiService

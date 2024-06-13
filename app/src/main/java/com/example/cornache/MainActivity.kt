@@ -21,6 +21,8 @@ import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityMainBinding
 import com.example.cornache.viewmodel.MainViewModel
 import com.example.cornache.viewmodel.ViewModelFactory
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -52,6 +54,9 @@ class MainActivity : AppCompatActivity() {
         val loginPreference = LoginPreference.getInstance(dataStore)
         val factory : ViewModelFactory = ViewModelFactory.getInstance(this, loginPreference)
         viewModel = ViewModelProvider(this,factory)[MainViewModel::class.java]
+        val token = runBlocking {
+            loginPreference.getSession().first().token
+        }
 
         viewModel.getSession().observe(this){user ->
             if (!user.isLogin){
@@ -60,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             else{
                 setupView()
                 setupAction()
+                Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class FileUploadResponse(
 
 	@field:SerializedName("history")
-	val history: History? = null,
+	val history: History?=null,
 
 	@field:SerializedName("error")
 	val error: Boolean? = null,
@@ -34,5 +34,5 @@ data class History(
 	val userId: String? = null,
 
 	@field:SerializedName("prediction")
-	val prediction: Prediction? = null
+	val prediction: Prediction?=null
 )

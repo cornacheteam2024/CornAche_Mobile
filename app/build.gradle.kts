@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
@@ -64,6 +65,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
     implementation("androidx.activity:activity-ktx:1.7.2")
-    implementation("com.github.bumptech.glide:glide:4.14.2")
+    implementation(libs.glide)
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
     implementation("androidx.paging:paging-runtime-ktx:3.3.0")
 }

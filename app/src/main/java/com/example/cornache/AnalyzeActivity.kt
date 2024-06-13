@@ -82,8 +82,8 @@ class AnalyzeActivity : AppCompatActivity() {
                         }
                         is ResultState.Success -> {
                             showLoading(false)
-                            val resultPrediction = result.data.history?.prediction?.name.toString()
-                            val resultImage = result.data.history?.prediction?.image.toString()
+                            val resultPrediction = result.data.history?.prediction?.name
+                            val resultImage = result.data.history?.prediction?.image
                             val bundle = Bundle().apply {
                                 putString("nama",resultPrediction)
                                 putString("gambar",resultImage)
@@ -98,6 +98,7 @@ class AnalyzeActivity : AppCompatActivity() {
                             showLoading(false)
                             Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
                         }
+                        else -> {}
                     }
                 }
             }

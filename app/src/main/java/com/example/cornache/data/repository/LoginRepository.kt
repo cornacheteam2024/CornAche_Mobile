@@ -22,10 +22,6 @@ class LoginRepository private constructor(
         return pref.getSession()
     }
 
-    suspend fun saveSession(userModel: UserModel){
-        pref.saveSession(userModel)
-    }
-
     fun login(username: String, password: String): LiveData<ResultState<LoginResult>> = liveData {
         emit(ResultState.Loading)
         try {
@@ -60,6 +56,9 @@ class LoginRepository private constructor(
             Log.e("LoginRepository", "Exception: ${e.message}")
             emit(ResultState.Error(e.message.toString()))
         }
+    }
+    suspend fun saveSession(userModel: UserModel){
+        pref.saveSession(userModel)
     }
 
     companion object {

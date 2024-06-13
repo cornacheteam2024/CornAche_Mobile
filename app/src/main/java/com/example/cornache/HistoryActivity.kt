@@ -25,10 +25,10 @@ class HistoryActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-//        val factory :HistoryViewModelFactory = HistoryViewModelFactory.getInstance(this)
-//        viewModel = ViewModelProvider(this,factory)[HistoryViewModel::class.java]
-//        binding.rvHistory.layoutManager = LinearLayoutManager(this)
-//        getData()
+        val factory :HistoryViewModelFactory = HistoryViewModelFactory.getInstance(this)
+        viewModel = ViewModelProvider(this,factory)[HistoryViewModel::class.java]
+        binding.rvHistory.layoutManager = LinearLayoutManager(this)
+        getData()
     }
 
     private fun getData(){

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
+import com.example.cornache.data.UserModel
 import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityLoginBinding
 import com.example.cornache.viewmodel.LoginViewModel
@@ -53,16 +54,20 @@ class LoginActivity : AppCompatActivity() {
                                     binding.progressBar.visibility = View.GONE
                                     val response = it.data
 
-                                    Log.d("LoginActivity", "Response: $response")
+                                    Log.d("LoginActivity", "Response: ${response}")
 
-                                    val token = response.token
-                                    if (token != null) {
-                                        Log.d("LoginActivity", "Token: $token")
-                                        viewModel.saveState(token)
-                                        navigateToMain(response.username)
-                                    } else {
-                                        Log.e("LoginActivity", "Token is null")
-                                        // Handle the null token case appropriately
+                                    viewModel.saveState(UserModel(it.data.userId.toString(),it.data.token.toString()))
+                                    AlertDialog.Builder(this).apply {
+                                        setTitle(getString(R.string.success))
+                                        setMessage(getString(R.string.welcome_back) + " " + "${response.username}")
+                                        setPositiveButton(getString(R.string.dialog_continue)) { _, _ ->
+                                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                            startActivity(intent)
+                                            finish()
+                                        }
+                                        create()
+                                        show()
                                     }
                                 }
                                 is ResultState.Error -> {
@@ -80,21 +85,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
-    }
-
-    private fun navigateToMain(username: String?) {
-        AlertDialog.Builder(this).apply {
-            setTitle(getString(R.string.success))
-            setMessage(getString(R.string.welcome_back) + " " + (username ?: ""))
-            setPositiveButton(getString(R.string.dialog_continue)) { _, _ ->
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-                finish()
-            }
-            create()
-            show()
         }
     }
 }

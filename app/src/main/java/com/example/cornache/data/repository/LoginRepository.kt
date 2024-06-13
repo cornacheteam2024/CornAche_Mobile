@@ -5,16 +5,26 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
+import com.example.cornache.data.UserModel
 import com.example.cornache.data.api.response.ErrorResponse
 import com.example.cornache.data.api.response.LoginResult
 import com.example.cornache.data.api.retrofit.ApiService
 import com.google.gson.Gson
+import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 
 class LoginRepository private constructor(
     private val apiService: ApiService,
     private val pref: LoginPreference
 ) {
+
+    fun getSession():Flow<UserModel>{
+        return pref.getSession()
+    }
+
+    suspend fun saveSession(userModel: UserModel){
+        pref.saveSession(userModel)
+    }
 
     fun login(username: String, password: String): LiveData<ResultState<LoginResult>> = liveData {
         emit(ResultState.Loading)

@@ -24,6 +24,9 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(loginRepository, loginPreference) as T
             }
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
+                MainViewModel(loginRepository) as T
+            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

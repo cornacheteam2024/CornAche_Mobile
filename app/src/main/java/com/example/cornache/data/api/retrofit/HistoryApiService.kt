@@ -14,5 +14,5 @@ interface HistoryApiService {
     suspend fun getHistory(
         @Path("user_id") userId:String,
         @Query("page") page:Int
-    ):HistoryItem
+    ):Response
 }

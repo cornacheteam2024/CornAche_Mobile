@@ -19,6 +19,8 @@ import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityAnalyzeBinding
 import com.example.cornache.viewmodel.AnalyzeViewModel
 import com.example.cornache.viewmodel.ViewModelFactory
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 class AnalyzeActivity : AppCompatActivity() {
     private lateinit var binding:ActivityAnalyzeBinding
@@ -30,9 +32,10 @@ class AnalyzeActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityAnalyzeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val preference = LoginPreference.getInstance(dataStore)
         val factory :ViewModelFactory = ViewModelFactory.getInstance(
             this,
-            LoginPreference.getInstance(dataStore)
+            preference
         )
         viewModel = ViewModelProvider(this,factory)[AnalyzeViewModel::class.java]
         binding.btnGallery.setOnClickListener { startGallery() }
@@ -73,7 +76,8 @@ class AnalyzeActivity : AppCompatActivity() {
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri,this)
             Log.d("ImageFile", "showImage:${imageFile.path} ")
-            val userId = "342343jghghj5435-345hv43-bn3b4"
+            val preference = LoginPreference.getInstance(dataStore)
+            val userId = runBlocking { preference.getSession().first().userId }
             viewModel.analyzeImage(imageFile,userId).observe(this) {result ->
                 if (result != null){
                     when(result){

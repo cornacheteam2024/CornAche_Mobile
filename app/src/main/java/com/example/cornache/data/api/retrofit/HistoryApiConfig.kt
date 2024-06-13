@@ -13,15 +13,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object HistoryApiConfig {
-    fun getApiService(context: Context): HistoryApiService {
-        val preference = LoginPreference.getInstance(context.dataStore)
-        val token = runBlocking {
-            preference.getSession().first().token
-        }
+    fun getApiService(token:String): HistoryApiService {
         val authInterceptor = Interceptor {chain ->
             val req = chain.request()
             val requestHeaders = req.newBuilder()
-                .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZhaXNhbCBlZGl0IiwiaWF0IjoxNzE4MjIxNzU5LCJleHAiOjE3MTgzMDgxNTl9.iVQ6LZMdMU9yMci7ATPtFS4hNye_uq9qDfY_d7W2FjQ")
+                .addHeader("Authorization", "Bearer $token")
                 .build()
             chain.proceed(requestHeaders)
         }

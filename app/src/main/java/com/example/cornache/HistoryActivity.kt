@@ -24,7 +24,6 @@ class HistoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHistoryBinding
     private lateinit var viewModel: HistoryViewModel
     private lateinit var preference: LoginPreference
-    private lateinit var adapter: HistoryAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -38,34 +37,41 @@ class HistoryActivity : AppCompatActivity() {
         val factory: HistoryViewModelFactory = HistoryViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[HistoryViewModel::class.java]
         binding.rvHistory.layoutManager = LinearLayoutManager(this)
-        adapter = HistoryAdapter()
         getData()
     }
 
+//    private fun getData() {
+//        binding.rvHistory.adapter = adapter
+//        preference = LoginPreference.getInstance(dataStore)
+//        val adapter = HistoryAdapter()
+//        binding.rvHistory.adapter = adapter
+//        viewModel.getHistory().observe(this) { result ->
+//            if (result != null) {
+//                when (result) {
+//                    is ResultState.Loading -> {
+////                        showLoading(true)
+//                    }
+//
+//                    is ResultState.Success -> {
+////                        showLoading(false)
+//                        val historyData = result.data
+//                        val historyItemList = mutableListOf(historyData)
+//                        adapter.submitList(historyItemList)
+//                    }
+//
+//                    is ResultState.Error -> {
+//                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//            }
+//        }
+//    }
+
     private fun getData() {
-        binding.rvHistory.adapter = adapter
-        preference = LoginPreference.getInstance(dataStore)
         val adapter = HistoryAdapter()
         binding.rvHistory.adapter = adapter
-        viewModel.getHistory().observe(this) { result ->
-            if (result != null) {
-                when (result) {
-                    is ResultState.Loading -> {
-//                        showLoading(true)
-                    }
-
-                    is ResultState.Success -> {
-//                        showLoading(false)
-                        val historyData = result.data
-                        val historyItemList = mutableListOf(historyData)
-                        adapter.submitList(historyItemList)
-                    }
-
-                    is ResultState.Error -> {
-                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
+        viewModel.history.observe(this,{
+            adapter.submitData(lifecycle,it)
+        })
     }
 }

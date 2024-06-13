@@ -8,6 +8,8 @@ import com.example.cornache.data.api.retrofit.PredictApiConfig
 import com.example.cornache.data.dataStore
 import com.example.cornache.data.repository.HistoryRepository
 import com.example.cornache.data.repository.UserRepository
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 object Injection {
     fun provideRepository(context: Context): UserRepository {
@@ -16,7 +18,8 @@ object Injection {
     }
     fun historyRepository(context: Context) : HistoryRepository{
         val preference = LoginPreference.getInstance(context.dataStore)
-        val apiService = HistoryApiConfig.getApiService(context)
+        val token = runBlocking { preference.getToken().first() }
+        val apiService = HistoryApiConfig.getApiService(token.toString())
         return HistoryRepository.getInstance(apiService,preference)
     }
     fun provideApiService() = ApiConfig.getApiService()

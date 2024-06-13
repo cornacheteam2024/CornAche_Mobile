@@ -4,11 +4,9 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingSource.LoadResult.Page
 import androidx.paging.PagingState
 import com.example.cornache.data.api.response.HistoryItem
-import com.example.cornache.data.api.response.Response
-import com.example.cornache.data.api.retrofit.HistoryApiService
-import kotlinx.coroutines.runBlocking
+import com.example.cornache.data.api.retrofit.GETApiService
 
-class HistoryPagingSource(private val apiService: HistoryApiService, private val userId:String) : PagingSource<Int, HistoryItem>() {
+class HistoryPagingSource(private val apiService: GETApiService, private val userId:String) : PagingSource<Int, HistoryItem>() {
     override fun getRefreshKey(state: PagingState<Int, HistoryItem>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)

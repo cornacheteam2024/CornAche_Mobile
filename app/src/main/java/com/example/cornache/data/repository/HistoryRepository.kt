@@ -12,7 +12,7 @@ import com.example.cornache.data.ResultState
 import com.example.cornache.data.UserModel
 import com.example.cornache.data.api.response.ErrorResponse
 import com.example.cornache.data.api.response.HistoryItem
-import com.example.cornache.data.api.retrofit.HistoryApiService
+import com.example.cornache.data.api.retrofit.GETApiService
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -20,7 +20,7 @@ import kotlinx.coroutines.runBlocking
 import retrofit2.HttpException
 
 class HistoryRepository private constructor(
-    private val apiService: HistoryApiService,
+    private val apiService: GETApiService,
     private val preference: LoginPreference
 ){
     fun getSession():Flow<UserModel>{
@@ -39,9 +39,21 @@ class HistoryRepository private constructor(
             }
         ).liveData
     }
+
+    fun getDetailUser(userId: String) = liveData {
+        emit(ResultState.Loading)
+        try {
+            val successResponse = apiService.getDetailUser(userId)
+            emit(ResultState.Success(successResponse))
+        }catch (e: HttpException){
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, ErrorResponse::class.java)
+            emit(ResultState.Error(errorResponse.message.toString()))
+        }
+    }
     companion object{
         fun getInstance(
-            apiService: HistoryApiService,
+            apiService: GETApiService,
             preference: LoginPreference
         ) = HistoryRepository(apiService, preference)
     }

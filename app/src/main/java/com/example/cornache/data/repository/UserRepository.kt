@@ -5,6 +5,7 @@ import java.io.File
 import androidx.lifecycle.liveData
 import com.example.cornache.data.ResultState
 import com.example.cornache.data.api.response.ErrorResponse
+import com.example.cornache.data.api.retrofit.GETApiService
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -33,6 +34,7 @@ class UserRepository private constructor(
             emit(ResultState.Error(errorResponse.message.toString()))
         }
     }
+
     companion object{
         fun getInstance(
             predictApiService: PredictApiService

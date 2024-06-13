@@ -1,19 +1,14 @@
 package com.example.cornache.data.api.retrofit
 
-import android.content.Context
 import com.example.cornache.BuildConfig
-import com.example.cornache.data.LoginPreference
-import com.example.cornache.data.dataStore
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object HistoryApiConfig {
-    fun getApiService(token:String): HistoryApiService {
+object GETApiConfig {
+    fun getApiService(token:String): GETApiService {
         val authInterceptor = Interceptor {chain ->
             val req = chain.request()
             val requestHeaders = req.newBuilder()
@@ -34,6 +29,6 @@ object HistoryApiConfig {
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-        return retrofit.create(HistoryApiService::class.java)
+        return retrofit.create(GETApiService::class.java)
     }
 }

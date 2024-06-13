@@ -40,33 +40,6 @@ class HistoryActivity : AppCompatActivity() {
         getData()
     }
 
-//    private fun getData() {
-//        binding.rvHistory.adapter = adapter
-//        preference = LoginPreference.getInstance(dataStore)
-//        val adapter = HistoryAdapter()
-//        binding.rvHistory.adapter = adapter
-//        viewModel.getHistory().observe(this) { result ->
-//            if (result != null) {
-//                when (result) {
-//                    is ResultState.Loading -> {
-////                        showLoading(true)
-//                    }
-//
-//                    is ResultState.Success -> {
-////                        showLoading(false)
-//                        val historyData = result.data
-//                        val historyItemList = mutableListOf(historyData)
-//                        adapter.submitList(historyItemList)
-//                    }
-//
-//                    is ResultState.Error -> {
-//                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//        }
-//    }
-
     private fun getData() {
         val adapter = HistoryAdapter()
         binding.rvHistory.adapter = adapter

@@ -100,9 +100,8 @@ class AnalyzeActivity : AppCompatActivity() {
                         }
                         is ResultState.Error ->{
                             showLoading(false)
-                            Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                            showToast(result.error)
                         }
-                        else -> {}
                     }
                 }
             }

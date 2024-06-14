@@ -16,6 +16,5 @@ import com.example.cornache.data.repository.HistoryRepository
 import kotlinx.coroutines.runBlocking
 
 class HistoryViewModel(private val historyRepository: HistoryRepository) : ViewModel() {
-//    fun getHistory() : LiveData<ResultState<HistoryItem>> = historyRepository.getHistory()
     val history : LiveData<PagingData<HistoryItem>> = historyRepository.getHistory().cachedIn(viewModelScope)
 }

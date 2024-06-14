@@ -2,6 +2,7 @@ package com.example.cornache
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -68,17 +69,23 @@ class RoomActivity : AppCompatActivity() {
         viewModel.getRoomList().observe(this){result ->
             if (result!= null){
                 when(result){
-                    is ResultState.Loading -> {}
+                    is ResultState.Loading -> showLoading(true)
                     is ResultState.Success -> {
+                        showLoading(false)
                         val roomList = result.data
                         adapter.submitList(roomList)
                     }
                     is ResultState.Error -> {
+                        showLoading(false)
                         Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
+    }
+
+    private fun showLoading(isLoading:Boolean){
+        binding.progressBar3.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
 }

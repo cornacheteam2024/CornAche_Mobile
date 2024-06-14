@@ -76,6 +76,18 @@ class RoomRepository private constructor(
             emit(ResultState.Error(errorResponse.message.toString()))
         }
     }
+    fun postComment(roomId: String,content:String) = liveData {
+        emit(ResultState.Loading)
+        val userId = runBlocking { pref.getSession().first().userId }
+        try {
+            val successResponse = apiService.postComment(roomId, content, userId)
+            emit(ResultState.Success(successResponse))
+        }catch (e:HttpException){
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, ErrorResponse::class.java)
+            emit(ResultState.Error(errorResponse.message.toString()))
+        }
+    }
     companion object {
         @Volatile
         private var instance: RoomRepository? = null

@@ -28,7 +28,8 @@
             android:exported="false" />
         <activity
             android:name=".DetailRoomActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".AddRoomActivity"
             android:exported="false" />

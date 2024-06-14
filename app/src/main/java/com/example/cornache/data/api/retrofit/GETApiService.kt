@@ -1,5 +1,6 @@
 package com.example.cornache.data.api.retrofit
 
+import com.example.cornache.data.api.response.AllCommentResponse
 import com.example.cornache.data.api.response.DetailUserResponse
 import com.example.cornache.data.api.response.Response
 import com.example.cornache.data.api.response.RoomDetailResponse
@@ -23,8 +24,14 @@ interface GETApiService {
     @GET("room")
     suspend fun getRoom():RoomListResponse
 
-    @GET("room/{user_id}")
+    @GET("room/{room_id}")
     suspend fun getDetailRoom(
-        @Path("user_id") userId: String
+        @Path("room_id") roomId: String
     ):RoomDetailResponse
+
+    @GET("chat/{room_id}")
+    suspend fun getAllComment(
+        @Path("room_id") roomId:String,
+        @Query("page") page:Int
+    ):AllCommentResponse
 }

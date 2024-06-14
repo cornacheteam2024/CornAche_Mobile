@@ -1,9 +1,12 @@
 package com.example.cornache
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.cornache.data.LoginPreference
@@ -18,6 +21,7 @@ import kotlinx.coroutines.runBlocking
 class EditProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
     private lateinit var viewModel: EditProfileViewModel
+    private var currentImageUri:Uri?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,6 +31,10 @@ class EditProfileActivity : AppCompatActivity() {
         val factory: ViewModelFactory = ViewModelFactory.getInstance(this, preference)
         viewModel = ViewModelProvider(this, factory)[EditProfileViewModel::class.java]
         getDetailUser()
+        binding.profileImage.setOnClickListener { startGallery() }
+        binding.btnSave.setOnClickListener {
+            updateDetailUser()
+        }
     }
 
     private fun getDetailUser(){
@@ -58,6 +66,46 @@ class EditProfileActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+    private fun updateDetailUser(){
+        currentImageUri?.let { uri ->
+            val imageFile = uriToFile(uri,this)
+            val updatedUsername = binding.username.text.toString()
+            viewModel.updateDetailUser(updatedUsername,imageFile).observe(this){result ->
+                if (result!=null){
+                    when(result){
+                        is ResultState.Loading -> showLoading(true)
+                        is ResultState.Success -> {
+                            showLoading(false)
+                            getDetailUser()
+                        }
+                        is ResultState.Error -> {
+                            showLoading(false)
+                            Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun startGallery(){
+        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ){uri: Uri? ->
+        if (uri != null){
+            currentImageUri = uri
+            showImage()
+        }else{
+            Toast.makeText(this, "Silahkan pilih gambar terlebih dahulu", Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun showImage() {
+        currentImageUri?.let {
+            binding.profileImage.setImageURI(it)
         }
     }
     private fun showLoading(isLoading:Boolean){

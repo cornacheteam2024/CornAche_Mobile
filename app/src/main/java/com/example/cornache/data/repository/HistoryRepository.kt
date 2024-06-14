@@ -6,10 +6,12 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
+import com.example.cornache.data.CommentPagingSource
 import com.example.cornache.data.HistoryPagingSource
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
 import com.example.cornache.data.UserModel
+import com.example.cornache.data.api.response.ChatsItem
 import com.example.cornache.data.api.response.ErrorResponse
 import com.example.cornache.data.api.response.HistoryItem
 import com.example.cornache.data.api.retrofit.GETApiService
@@ -40,6 +42,17 @@ class HistoryRepository private constructor(
         ).liveData
     }
 
+    fun getComments(roomId:String) : LiveData<PagingData<ChatsItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            pagingSourceFactory = {
+                CommentPagingSource(apiService,roomId)
+            }
+        ).liveData
+    }
+
     fun getDetailUser(userId: String) = liveData {
         emit(ResultState.Loading)
         try {
@@ -52,10 +65,10 @@ class HistoryRepository private constructor(
         }
     }
 
-    fun getDetailRoom(userId: String) = liveData {
+    fun getDetailRoom(roomId: String) = liveData {
         emit(ResultState.Loading)
         try {
-            val successResponse = apiService.getDetailRoom(userId)
+            val successResponse = apiService.getDetailRoom(roomId)
             emit(ResultState.Success(successResponse))
         }catch (e:HttpException){
             val errorBody = e.response()?.errorBody()?.string()

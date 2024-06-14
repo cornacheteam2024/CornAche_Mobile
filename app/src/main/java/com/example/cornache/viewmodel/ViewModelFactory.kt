@@ -46,13 +46,13 @@ class ViewModelFactory(
                 HistoryViewModel(historyRepository) as T
             }
             modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> {
-                EditProfileViewModel(historyRepository) as T
+                EditProfileViewModel(historyRepository, loginRepository) as T
             }
             modelClass.isAssignableFrom(RoomViewModel::class.java) -> {
                 RoomViewModel(historyRepository) as T
             }
             modelClass.isAssignableFrom(DetailRoomViewModel::class.java) -> {
-                DetailRoomViewModel(historyRepository) as T
+                DetailRoomViewModel(historyRepository, roomRepository) as T
             }
             modelClass.isAssignableFrom(MyRoomListViewModel::class.java) -> {
                 MyRoomListViewModel(historyRepository) as T

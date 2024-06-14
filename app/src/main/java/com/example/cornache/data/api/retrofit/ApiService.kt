@@ -1,8 +1,10 @@
 package com.example.cornache.data.api.retrofit
 
+import com.example.cornache.data.api.response.EditProfileResponse
 import com.example.cornache.data.api.response.EditRoomResponse
 import com.example.cornache.data.api.response.ErrorResponse
 import com.example.cornache.data.api.response.LoginResponse
+import com.example.cornache.data.api.response.PostCommentResponse
 import com.example.cornache.data.api.response.Prediction
 import com.example.cornache.data.api.response.RoomResponse
 import okhttp3.MultipartBody
@@ -44,6 +46,14 @@ interface ApiService {
     ):RoomResponse
 
     @Multipart
+    @PUT("profile/{user_id}")
+    suspend fun updateProfile(
+        @Path("user_id") userId:String,
+        @Part("username") username:RequestBody,
+        @Part file:MultipartBody.Part
+    ):EditProfileResponse
+
+    @Multipart
     @PUT("room/{room_id}")
     suspend fun updateRoom(
         @Path("room_id") roomId:String,
@@ -57,4 +67,11 @@ interface ApiService {
     suspend fun deleteRoom(
         @Path("room_id") roomId:String
     ):ErrorResponse
+    @FormUrlEncoded
+    @POST("chat")
+    suspend fun postComment(
+        @Field("room_id") roomId:String,
+        @Field("content") content:String,
+        @Field("user_id") userId:String
+    ):PostCommentResponse
 }

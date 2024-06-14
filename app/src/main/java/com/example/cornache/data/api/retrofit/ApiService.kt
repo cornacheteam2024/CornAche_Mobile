@@ -23,6 +23,7 @@ interface ApiService {
     @POST("register")
     suspend fun register(
         @Field("username") name: String,
-        @Field("password") password: String
+        @Field("password") password: String,
+        @Field("confirmPass") confirmPass: String
     ): ErrorResponse
 }

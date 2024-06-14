@@ -14,6 +14,9 @@ class HistoryViewModelFactory(private val historyRepository: HistoryRepository) 
             modelClass.isAssignableFrom(HistoryViewModel::class.java) ->{
                 HistoryViewModel(historyRepository) as T
             }
+            modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> {
+                EditProfileViewModel(historyRepository) as T
+            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

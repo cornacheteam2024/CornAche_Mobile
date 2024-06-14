@@ -8,7 +8,7 @@ data class Response(
 	val page: Int? = null,
 
 	@field:SerializedName("history")
-	val history: List<HistoryItem?>? = null,
+	val history: List<HistoryItem> = emptyList(),
 
 	@field:SerializedName("error")
 	val error: Boolean? = null,

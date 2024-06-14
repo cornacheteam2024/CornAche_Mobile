@@ -54,10 +54,6 @@ class MainActivity : AppCompatActivity() {
         val loginPreference = LoginPreference.getInstance(dataStore)
         val factory : ViewModelFactory = ViewModelFactory.getInstance(this, loginPreference)
         viewModel = ViewModelProvider(this,factory)[MainViewModel::class.java]
-        val token = runBlocking {
-            loginPreference.getSession().first().token
-        }
-
         viewModel.getSession().observe(this){user ->
             if (!user.isLogin){
                 startActivity(Intent(this@MainActivity, LoginActivity::class.java))
@@ -65,7 +61,6 @@ class MainActivity : AppCompatActivity() {
             else{
                 setupView()
                 setupAction()
-                Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -100,6 +95,12 @@ class MainActivity : AppCompatActivity() {
         }
         binding.buttonRiwayat.setOnClickListener {
             Intent(this@MainActivity, HistoryActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+        binding.btnLogout.setOnClickListener {
+            viewModel.logout()
+            Intent(this@MainActivity,LoginActivity::class.java).also {
                 startActivity(it)
             }
         }

@@ -51,6 +51,31 @@ class HistoryRepository private constructor(
             emit(ResultState.Error(errorResponse.message.toString()))
         }
     }
+
+    fun getDetailRoom(userId: String) = liveData {
+        emit(ResultState.Loading)
+        try {
+            val successResponse = apiService.getDetailRoom(userId)
+            emit(ResultState.Success(successResponse))
+        }catch (e:HttpException){
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody,ErrorResponse::class.java)
+            emit(ResultState.Error(errorResponse.message.toString()))
+        }
+    }
+
+    fun getListRoom() = liveData {
+        emit(ResultState.Loading)
+        try {
+            val successResponse = apiService.getRoom()
+            val roomList = successResponse.data
+            emit(ResultState.Success(roomList))
+        }catch (e:HttpException){
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, ErrorResponse::class.java)
+            emit(ResultState.Error(errorResponse.message.toString()))
+        }
+    }
     companion object{
         fun getInstance(
             apiService: GETApiService,

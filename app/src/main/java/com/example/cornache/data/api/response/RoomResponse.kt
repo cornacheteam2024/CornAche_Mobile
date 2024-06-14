@@ -38,11 +38,11 @@ data class DetailRoom(
 	val name: String? = null,
 
 	@field:SerializedName("update_at")
-	val updateAt: Any? = null,
+	val updateAt: String? = null,
 
 	@field:SerializedName("description")
 	val description: String? = null,
 
 	@field:SerializedName("created_at")
-	val createdAt: Long? = null
+	val createdAt: String? = null
 )

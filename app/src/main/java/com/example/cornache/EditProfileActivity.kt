@@ -5,16 +5,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
 import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityEditProfileBinding
 import com.example.cornache.viewmodel.EditProfileViewModel
-import com.example.cornache.viewmodel.HistoryViewModel
-import com.example.cornache.viewmodel.HistoryViewModelFactory
+import com.example.cornache.viewmodel.ViewModelFactory
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
@@ -26,7 +23,8 @@ class EditProfileActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val factory: HistoryViewModelFactory = HistoryViewModelFactory.getInstance(this)
+        val preference = LoginPreference.getInstance(dataStore)
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(this, preference)
         viewModel = ViewModelProvider(this, factory)[EditProfileViewModel::class.java]
         getDetailUser()
     }
@@ -51,7 +49,6 @@ class EditProfileActivity : AppCompatActivity() {
                                     .load(detailData?.avatarImg)
                                     .into(profileImage)
                                 username.setText(detailData?.username)
-                                password.setText(detailData?.password)
                             }
                         }
                     }

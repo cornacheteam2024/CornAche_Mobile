@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="210dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FFFF00">
+    android:background="#FFFF00"
+    app:cornerRadius="10dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/profilePicture"

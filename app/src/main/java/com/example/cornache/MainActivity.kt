@@ -3,7 +3,6 @@ package com.example.cornache
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
@@ -13,16 +12,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityMainBinding
 import com.example.cornache.viewmodel.MainViewModel
 import com.example.cornache.viewmodel.ViewModelFactory
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -89,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding .buttonObrolan.setOnClickListener {
-            Intent(this@MainActivity, ChatActivity::class.java).also {
+            Intent(this@MainActivity, RoomActivity::class.java).also {
                 startActivity(it)
             }
         }

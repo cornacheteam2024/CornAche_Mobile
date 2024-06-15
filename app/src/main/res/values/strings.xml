@@ -38,4 +38,5 @@
     <string name="welcome_back">selamat datang kembali</string>
     <string name="dialog_continue">login berhasil</string>
     <string name="error">gagal register silahkan isi data dengan benar</string>
+    <string name="cornache">CornAche</string>
 </resources>

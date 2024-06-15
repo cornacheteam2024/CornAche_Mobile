@@ -28,45 +28,45 @@ class EditProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
         val factory: HistoryViewModelFactory = HistoryViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[EditProfileViewModel::class.java]
-        getDetailUser()
+//        getDetailUser()
     }
 
-    private fun getDetailUser(){
-        val preference = LoginPreference.getInstance(dataStore)
-        val userId = runBlocking { preference.getSession().first().userId }
-        viewModel.getDetailUser(userId).observe(this){result ->
-            if (result!=null){
-                when(result){
-                    is ResultState.Loading -> showLoading(true)
-                    is ResultState.Success -> {
-                        showLoading(false)
-                        val detailData = result.data.user
-                        if (detailData?.avatarImg.isNullOrEmpty()){
-                            binding.apply {
-                                username.setText(detailData?.username)
-                            }
-                        }else{
-                            binding.apply {
-                                GlideApp.with(this@EditProfileActivity)
-                                    .load(detailData?.avatarImg)
-                                    .into(profileImage)
-                                username.setText(detailData?.username)
-                                password.setText(detailData?.password)
-                            }
-                        }
-                    }
-                    is ResultState.Error -> {
-                        showLoading(false)
-                        showToast(result.error)
-                    }
-                }
-            }
-        }
-    }
-    private fun showLoading(isLoading:Boolean){
-        binding.progressBar2.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
+//    private fun getDetailUser(){
+//        val preference = LoginPreference.getInstance(dataStore)
+//        val userId = runBlocking { preference.getSession().first().userId }
+//        viewModel.getDetailUser(userId).observe(this){result ->
+//            if (result!=null){
+//                when(result){
+//                    is ResultState.Loading -> showLoading(true)
+//                    is ResultState.Success -> {
+//                        showLoading(false)
+//                        val detailData = result.data.user
+//                        if (detailData?.avatarImg.isNullOrEmpty()){
+//                            binding.apply {
+//                                username.setText(detailData?.username)
+//                            }
+//                        }else{
+//                            binding.apply {
+//                                GlideApp.with(this@EditProfileActivity)
+//                                    .load(detailData?.avatarImg)
+//                                    .into(profileImage)
+//                                username.setText(detailData?.username)
+//                                password.setText(detailData?.password)
+//                            }
+//                        }
+//                    }
+//                    is ResultState.Error -> {
+//                        showLoading(false)
+//                        showToast(result.error)
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    private fun showLoading(isLoading:Boolean){
+//        binding.progressBar2.visibility = if (isLoading) View.VISIBLE else View.GONE
+//    }
+//    private fun showToast(message: String) {
+//        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+//    }
 }

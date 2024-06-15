@@ -3,30 +3,30 @@ package com.example.cornache
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.view.Menu
+import android.view.MenuItem
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityMainBinding
 import com.example.cornache.viewmodel.MainViewModel
 import com.example.cornache.viewmodel.ViewModelFactory
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel:MainViewModel
+    private lateinit var viewModel: MainViewModel
     private val requestPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
@@ -43,27 +43,28 @@ class MainActivity : AppCompatActivity() {
             this,
             REQUIRED_PERMISSION
         ) == PackageManager.PERMISSION_GRANTED
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding =ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (!allPermissionsGranted()){
+        if (!allPermissionsGranted()) {
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)
         }
         val loginPreference = LoginPreference.getInstance(dataStore)
-        val factory : ViewModelFactory = ViewModelFactory.getInstance(this, loginPreference)
-        viewModel = ViewModelProvider(this,factory)[MainViewModel::class.java]
-        viewModel.getSession().observe(this){user ->
-            if (!user.isLogin){
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(this, loginPreference)
+        viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
                 startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-            }
-            else{
+            } else {
                 setupView()
-                setupAction()
+                setupNavigation()
             }
         }
     }
+
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -77,34 +78,44 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    private fun setupAction() {
-        binding.buttonAnalisa.setOnClickListener {
-            Intent(this@MainActivity, AnalyzeActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-        binding.buttonProfil.setOnClickListener {
-            Intent(this@MainActivity, EditProfileActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-        binding .buttonObrolan.setOnClickListener {
-            Intent(this@MainActivity, ChatActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-        binding.buttonRiwayat.setOnClickListener {
-            Intent(this@MainActivity, HistoryActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-        binding.btnLogout.setOnClickListener {
-            viewModel.logout()
-            Intent(this@MainActivity,LoginActivity::class.java).also {
-                startActivity(it)
+    private fun setupNavigation() {
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_history -> {
+                    startActivity(Intent(this, HistoryActivity::class.java))
+                    true
+                }
+                R.id.navigation_detect_disease -> {
+                    startActivity(Intent(this, AnalyzeActivity::class.java))
+                    true
+                }
+                R.id.dashboard -> {
+                    true
+                }
+                R.id.navigation_edit_profile -> {
+                    startActivity(Intent(this, EditProfileActivity::class.java))
+                    true
+                }
+                R.id.navigation_logout -> {
+                    logout()
+                    true
+                }
+                else -> false
             }
         }
     }
+
+    private fun logout() {
+        val intent = Intent(
+            this@MainActivity,
+            LoginActivity::class.java
+        )
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+    }
+
     companion object {
         private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
     }

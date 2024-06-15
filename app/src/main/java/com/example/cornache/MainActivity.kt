@@ -63,8 +63,6 @@ class MainActivity : AppCompatActivity() {
                 setupNavigation()
             }
         }
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigationView.selectedItemId = R.id.dashboard
     }
 
     private fun setupView() {
@@ -92,9 +90,9 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, AnalyzeActivity::class.java))
                     true
                 }
-                R.id.dashboard -> {
-                    true
-                }
+//                R.id.dashboard -> {
+//                    true
+//                }
                 R.id.navigation_edit_profile -> {
                     startActivity(Intent(this, EditProfileActivity::class.java))
                     true

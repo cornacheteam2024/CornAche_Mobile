@@ -7,10 +7,10 @@
         android:id="@+id/navigation_detect_disease"
         android:icon="@drawable/baseline_search_24"
         android:title="Deteksi"/>
-    <item
-        android:id="@+id/dashboard"
-        android:icon="@drawable/baseline_home_24"
-        android:title="Dashboard"/>
+<!--    <item-->
+<!--        android:id="@+id/dashboard"-->
+<!--        android:icon="@drawable/baseline_home_24"-->
+<!--        android:title="Dashboard"/>-->
     <item
         android:id="@+id/navigation_chat"
         android:icon="@drawable/baseline_chat_24"

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
 import com.example.cornache.data.dataStore
@@ -19,10 +20,13 @@ import com.example.cornache.databinding.ActivityEditRoomBinding
 import com.example.cornache.viewmodel.AddRoomViewModel
 import com.example.cornache.viewmodel.EditRoomViewModel
 import com.example.cornache.viewmodel.ViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 
 class EditRoomActivity : AppCompatActivity() {
     private lateinit var binding : ActivityEditRoomBinding
     private lateinit var viewModel: EditRoomViewModel
+    private lateinit var loginPreference: LoginPreference
     private lateinit var roomId:String
     private var currentImageUri:Uri?=null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +59,7 @@ class EditRoomActivity : AppCompatActivity() {
         binding.imagePlaceholder.setOnClickListener { startGallery() }
         binding.postRoom.setOnClickListener { updateRoom() }
         binding.deleteRoom.setOnClickListener { deleteRoom() }
+        setupNavigation()
     }
 
     private fun deleteRoom(){
@@ -121,6 +126,45 @@ class EditRoomActivity : AppCompatActivity() {
             Toast.makeText(this, "Silahkan pilih gambar terlebih dahulu", Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun setupNavigation() {
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.selectedItemId = R.id.navigation_chat
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_history -> {
+                    startActivity(Intent(this, HistoryActivity::class.java))
+                    true
+                }
+                R.id.navigation_detect_disease -> {
+                    startActivity(Intent(this, AnalyzeActivity::class.java))
+                    true
+                }
+                R.id.navigation_edit_profile -> {
+                    startActivity(Intent(this, EditProfileActivity::class.java))
+                    true
+                }
+                R.id.navigation_logout -> {
+                    logout()
+                    true
+                }
+                R.id.navigation_chat -> {
+                    startActivity(Intent(this, RoomActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun logout() {
+        lifecycleScope.launch {
+            loginPreference.logout()
+            startActivity(Intent(this@EditRoomActivity, LoginActivity::class.java))
+            finish()
+        }
+    }
+
     private fun showLoading(isLoading:Boolean){
         binding.progressBar3.visibility = if (isLoading) View.VISIBLE else View.GONE
     }

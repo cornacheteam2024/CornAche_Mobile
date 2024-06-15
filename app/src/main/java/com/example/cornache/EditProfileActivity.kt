@@ -1,5 +1,6 @@
 package com.example.cornache
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -9,18 +10,22 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
 import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityEditProfileBinding
 import com.example.cornache.viewmodel.EditProfileViewModel
 import com.example.cornache.viewmodel.ViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class EditProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
     private lateinit var viewModel: EditProfileViewModel
+    private val loginPreference: LoginPreference = LoginPreference.getInstance(dataStore)
     private var currentImageUri:Uri?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +40,7 @@ class EditProfileActivity : AppCompatActivity() {
         binding.btnSave.setOnClickListener {
             updateDetailUser()
         }
+        setupNavigation()
     }
 
     private fun getDetailUser(){
@@ -113,5 +119,43 @@ class EditProfileActivity : AppCompatActivity() {
     }
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setupNavigation() {
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.selectedItemId = R.id.navigation_edit_profile
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_history -> {
+                    startActivity(Intent(this, HistoryActivity::class.java))
+                    true
+                }
+                R.id.navigation_detect_disease -> {
+                    startActivity(Intent(this, AnalyzeActivity::class.java))
+                    true
+                }
+                R.id.navigation_edit_profile -> {
+                    startActivity(Intent(this, EditProfileActivity::class.java))
+                    true
+                }
+                R.id.navigation_logout -> {
+                    logout()
+                    true
+                }
+                R.id.navigation_chat -> {
+                    startActivity(Intent(this, RoomActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun logout() {
+        lifecycleScope.launch {
+            loginPreference.logout()
+            startActivity(Intent(this@EditProfileActivity, LoginActivity::class.java))
+            finish()
+        }
     }
 }

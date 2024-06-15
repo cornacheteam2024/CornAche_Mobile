@@ -1,6 +1,7 @@
 package com.example.cornache
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cornache.adapter.CommentsAdapter
 import com.example.cornache.adapter.HistoryAdapter
@@ -19,11 +21,14 @@ import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityDetailRoomBinding
 import com.example.cornache.viewmodel.DetailRoomViewModel
 import com.example.cornache.viewmodel.ViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 
 class DetailRoomActivity : AppCompatActivity() {
     private lateinit var binding:ActivityDetailRoomBinding
     private lateinit var viewModel: DetailRoomViewModel
     private lateinit var roomId: String
+    private val loginPreference: LoginPreference = LoginPreference.getInstance(dataStore)
     private lateinit var adapter: CommentsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +59,7 @@ class DetailRoomActivity : AppCompatActivity() {
             }
         }
         fetchComments(roomId)
+        setupNavigation()
     }
 
     private fun fetchData(){
@@ -135,6 +141,44 @@ class DetailRoomActivity : AppCompatActivity() {
 
     private fun showData(isLoading:Boolean){
         binding.data.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun setupNavigation() {
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.selectedItemId = R.id.navigation_chat
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_history -> {
+                    startActivity(Intent(this, HistoryActivity::class.java))
+                    true
+                }
+                R.id.navigation_detect_disease -> {
+                    startActivity(Intent(this, AnalyzeActivity::class.java))
+                    true
+                }
+                R.id.navigation_edit_profile -> {
+                    startActivity(Intent(this, EditProfileActivity::class.java))
+                    true
+                }
+                R.id.navigation_logout -> {
+                    logout()
+                    true
+                }
+                R.id.navigation_chat -> {
+                    startActivity(Intent(this, RoomActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun logout() {
+        lifecycleScope.launch {
+            loginPreference.logout()
+            startActivity(Intent(this@DetailRoomActivity, LoginActivity::class.java))
+            finish()
+        }
     }
 
     companion object{

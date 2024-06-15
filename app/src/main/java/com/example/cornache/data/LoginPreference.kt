@@ -38,30 +38,6 @@ class LoginPreference private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
-    fun getUserId(): Flow<String?> {
-        return dataStore.data.map { preferences ->
-            preferences[USER_ID_KEY]
-        }
-    }
-
-    suspend fun saveToken(token: String) {
-        dataStore.edit { preferences ->
-            preferences[TOKEN_KEY] = token
-        }
-    }
-
-    suspend fun saveUserId(userId: String) {
-        dataStore.edit { preferences ->
-            preferences[USER_ID_KEY] = userId
-        }
-    }
-
-    suspend fun login() {
-        dataStore.edit { preferences ->
-            preferences[IS_LOGIN_KEY] = true
-        }
-    }
-
     suspend fun logout() {
         dataStore.edit { preferences ->
             preferences[TOKEN_KEY] = ""

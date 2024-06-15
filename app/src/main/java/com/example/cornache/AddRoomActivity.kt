@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
 import com.example.cornache.data.dataStore
@@ -19,9 +20,12 @@ import com.example.cornache.databinding.ActivityAddRoomBinding
 import com.example.cornache.viewmodel.AddRoomViewModel
 import com.example.cornache.viewmodel.MainViewModel
 import com.example.cornache.viewmodel.ViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 
 class AddRoomActivity : AppCompatActivity() {
     private lateinit var binding : ActivityAddRoomBinding
+    private lateinit var loginPreference: LoginPreference
     private lateinit var viewModel : AddRoomViewModel
     private var currentImageUri:Uri?=null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +43,7 @@ class AddRoomActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this,factory)[AddRoomViewModel::class.java]
         binding.imagePlaceholder.setOnClickListener { startGallery() }
         binding.postRoom.setOnClickListener { createRoom() }
+        setupNavigation()
     }
     private fun createRoom(){
         currentImageUri?.let {
@@ -51,7 +56,7 @@ class AddRoomActivity : AppCompatActivity() {
                         is ResultState.Loading -> showLoading(true)
                         is ResultState.Success -> {
                             showLoading(false)
-                            Intent(this@AddRoomActivity,MainActivity::class.java).also {
+                            Intent(this@AddRoomActivity,RoomActivity::class.java).also {
                                 it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(it)
                             }
@@ -89,5 +94,43 @@ class AddRoomActivity : AppCompatActivity() {
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setupNavigation() {
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.selectedItemId = R.id.navigation_chat
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_history -> {
+                    startActivity(Intent(this, HistoryActivity::class.java))
+                    true
+                }
+                R.id.navigation_detect_disease -> {
+                    startActivity(Intent(this, AnalyzeActivity::class.java))
+                    true
+                }
+                R.id.navigation_edit_profile -> {
+                    startActivity(Intent(this, EditProfileActivity::class.java))
+                    true
+                }
+                R.id.navigation_logout -> {
+                    logout()
+                    true
+                }
+                R.id.navigation_chat -> {
+                    startActivity(Intent(this, RoomActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun logout() {
+        lifecycleScope.launch {
+            loginPreference.logout()
+            startActivity(Intent(this@AddRoomActivity, LoginActivity::class.java))
+            finish()
+        }
     }
 }

@@ -1,19 +1,29 @@
 package com.example.cornache
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Binder
+import android.os.Build
 import android.os.Bundle
 import android.widget.MediaController
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.example.cornache.data.LoginPreference
+import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityResultBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
+    private val loginPreference = LoginPreference.getInstance(dataStore)
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -69,7 +79,47 @@ class ResultActivity : AppCompatActivity() {
             webView.settings.javaScriptEnabled = true
             webView.webChromeClient
         }
+        setupNavigation()
     }
+
+    private fun setupNavigation() {
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.selectedItemId = R.id.navigation_detect_disease
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_history -> {
+                    startActivity(Intent(this, HistoryActivity::class.java))
+                    true
+                }
+                R.id.navigation_detect_disease -> {
+                    startActivity(Intent(this, AnalyzeActivity::class.java))
+                    true
+                }
+                R.id.navigation_edit_profile -> {
+                    startActivity(Intent(this, EditProfileActivity::class.java))
+                    true
+                }
+                R.id.navigation_logout -> {
+                    logout()
+                    true
+                }
+                R.id.navigation_chat -> {
+                    startActivity(Intent(this, RoomActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun logout() {
+        lifecycleScope.launch {
+            loginPreference.logout()
+            startActivity(Intent(this@ResultActivity, LoginActivity::class.java))
+            finish()
+        }
+    }
+
     companion object{
         const val DATA = "data"
     }

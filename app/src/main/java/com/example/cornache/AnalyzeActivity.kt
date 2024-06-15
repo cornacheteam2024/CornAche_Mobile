@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.cornache.CameraActivity.Companion.CAMERAX_RESULT
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
@@ -19,12 +20,15 @@ import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityAnalyzeBinding
 import com.example.cornache.viewmodel.AnalyzeViewModel
 import com.example.cornache.viewmodel.ViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class AnalyzeActivity : AppCompatActivity() {
     private lateinit var binding:ActivityAnalyzeBinding
     private var currentImageUri:Uri?=null
+    private lateinit var loginPreference: LoginPreference
     private lateinit var viewModel:AnalyzeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +45,7 @@ class AnalyzeActivity : AppCompatActivity() {
         binding.btnGallery.setOnClickListener { startGallery() }
         binding.btnCamera.setOnClickListener { startCameraX() }
         binding.btnAnalyze.setOnClickListener { uploadImage() }
+        setupNavigation()
     }
     private fun startGallery(){
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
@@ -107,6 +112,46 @@ class AnalyzeActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun setupNavigation() {
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.selectedItemId = R.id.navigation_detect_disease
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_history -> {
+                    startActivity(Intent(this, HistoryActivity::class.java))
+                    true
+                }
+                R.id.navigation_detect_disease -> {
+                    startActivity(Intent(this, AnalyzeActivity::class.java))
+                    true
+                }
+                R.id.navigation_edit_profile -> {
+                    startActivity(Intent(this, EditProfileActivity::class.java))
+                    true
+                }
+                R.id.navigation_logout -> {
+                    logout()
+                    true
+                }
+                R.id.navigation_chat -> {
+                    startActivity(Intent(this, RoomActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun logout() {
+        lifecycleScope.launch {
+            loginPreference.logout()
+            startActivity(Intent(this@AnalyzeActivity, LoginActivity::class.java))
+            finish()
+        }
+    }
+
+
     private fun showLoading(isLoading:Boolean){
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }

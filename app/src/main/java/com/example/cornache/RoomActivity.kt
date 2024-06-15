@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cornache.adapter.RoomAdapter
@@ -19,11 +20,14 @@ import com.example.cornache.data.dataStore
 import com.example.cornache.databinding.ActivityChatBinding
 import com.example.cornache.viewmodel.RoomViewModel
 import com.example.cornache.viewmodel.ViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 
 class RoomActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
     private lateinit var viewModel: RoomViewModel
     private lateinit var adapter: RoomAdapter
+    private val loginPreference = LoginPreference.getInstance(dataStore)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -58,6 +62,7 @@ class RoomActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        setupNavigation()
     }
     private fun getRoomList(){
         binding.rvChat.adapter = adapter
@@ -81,6 +86,44 @@ class RoomActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+
+    private fun setupNavigation() {
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.selectedItemId = R.id.navigation_chat
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_history -> {
+                    startActivity(Intent(this, HistoryActivity::class.java))
+                    true
+                }
+                R.id.navigation_detect_disease -> {
+                    startActivity(Intent(this, AnalyzeActivity::class.java))
+                    true
+                }
+                R.id.navigation_edit_profile -> {
+                    startActivity(Intent(this, EditProfileActivity::class.java))
+                    true
+                }
+                R.id.navigation_logout -> {
+                    logout()
+                    true
+                }
+                R.id.navigation_chat -> {
+                    startActivity(Intent(this, RoomActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun logout() {
+        lifecycleScope.launch {
+            loginPreference.logout()
+            startActivity(Intent(this@RoomActivity, LoginActivity::class.java))
+            finish()
         }
     }
 

@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#FFFACD</color>
     <color name="cornYellow">#FFD700</color>
+    <color name="green">#4CAF50</color>
 </resources>

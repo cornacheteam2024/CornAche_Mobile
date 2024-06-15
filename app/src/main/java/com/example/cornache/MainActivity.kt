@@ -103,6 +103,10 @@ class MainActivity : AppCompatActivity() {
                     logout()
                     true
                 }
+//                R.id.navigation_chat -> {
+//                    startActivity(Intent(this, RoomActivity::class.java))
+//                    true
+//                }
                 else -> false
             }
         }

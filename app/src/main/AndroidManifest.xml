@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature android:name="android.hardware.camera" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
 
     <application
@@ -19,6 +21,19 @@
         android:theme="@style/Theme.CornAche"
         tools:targetApi="31">
         <activity
+            android:name=".EditRoomActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyRoomListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailRoomActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".AddRoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".CameraActivity"
             android:exported="false" />
         <activity
@@ -28,7 +43,7 @@
             android:name=".HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".RoomActivity"
             android:exported="false" />
         <activity
             android:name=".AnalyzeActivity"
@@ -50,8 +65,8 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -59,7 +74,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

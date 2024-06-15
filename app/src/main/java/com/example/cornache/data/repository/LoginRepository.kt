@@ -11,7 +11,14 @@ import com.example.cornache.data.api.response.LoginResult
 import com.example.cornache.data.api.retrofit.ApiService
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
+import java.io.File
 
 class LoginRepository private constructor(
     private val apiService: ApiService,
@@ -24,6 +31,26 @@ class LoginRepository private constructor(
 
     suspend fun logout(){
         pref.logout()
+    }
+
+    fun editProfile(username:String,imageFile:File) = liveData {
+        emit(ResultState.Loading)
+        val userId = runBlocking { getSession().first().userId }
+        val requestBody = username.toRequestBody("text/plain".toMediaType())
+        val requestImageFile = imageFile.asRequestBody("image/jpg".toMediaType())
+        val multipartBody = MultipartBody.Part.createFormData(
+            "avatar_image",
+            imageFile.name,
+            requestImageFile
+        )
+        try {
+            val successResponse = apiService.updateProfile(userId,requestBody,multipartBody)
+            emit(ResultState.Success(successResponse))
+        }catch (e:HttpException){
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody,ErrorResponse::class.java)
+            emit(ResultState.Error(errorResponse.message.toString()))
+        }
     }
 
     fun register(username:String, password: String, confirmPass:String) = liveData {

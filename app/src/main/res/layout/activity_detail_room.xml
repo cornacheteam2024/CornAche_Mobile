@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFACD"
+    tools:context=".DetailRoomActivity">
+
+    <ScrollView
+        android:id="@+id/data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/profilePicture"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="32dp">
+                    <ImageView
+                        android:id="@+id/ivProfile"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"/>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tvUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/username"
+                    app:layout_constraintStart_toEndOf="@id/profilePicture"
+                    app:layout_constraintTop_toTopOf="@id/profilePicture"
+                    app:layout_constraintBottom_toBottomOf="@id/profilePicture"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/tvCreateAt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time_chat"
+                    app:layout_constraintStart_toEndOf="@id/tvUsername"
+                    app:layout_constraintTop_toTopOf="@id/tvUsername"
+                    app:layout_constraintBottom_toBottomOf="@id/tvUsername"
+                    android:gravity="center_horizontal"
+                    android:layout_marginStart="24dp"
+                    android:textSize="13sp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#7B7A82"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/titleDiscussion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ini judul"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_below="@id/ll"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/tvPreview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ini preview diskusi"
+                android:textSize="14sp"
+                android:layout_below="@id/titleDiscussion"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="9dp"/>
+
+            <ImageView
+                android:id="@+id/ivRoom"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@id/tvPreview"
+                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="16dp"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/llComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:layout_marginStart="16dp"
+                android:layout_below="@id/ivRoom">
+                <ImageView
+                    android:id="@+id/replyVector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_chat_24"
+                    app:layout_constraintTop_toBottomOf="@id/tvPreview"
+                    app:layout_constraintStart_toStartOf="@id/tvPreview"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 Pembahasan"
+                    app:layout_constraintTop_toTopOf="@id/replyVector"
+                    app:layout_constraintStart_toEndOf="@id/replyVector"
+                    app:layout_constraintBottom_toBottomOf="@id/replyVector"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="9dp"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/llComment"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:id="@+id/tvUsernameComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username"
+                android:layout_gravity="center_vertical"
+                android:layout_below="@id/line"
+                android:layout_alignStart="@id/llComment"
+                android:layout_marginTop="12dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/commentEditTextLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_below="@id/tvUsernameComment"
+                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="16dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/commentEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:hint="Tuliskan komentar anda"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/replyRoom"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Balas"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/black"
+                app:cornerRadius="10dp"
+                android:layout_below="@id/commentEditTextLayout"
+                android:layout_alignParentEnd="true"
+                android:layout_marginVertical="12dp"
+                android:layout_marginEnd="16dp"
+                android:layout_gravity="center"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvComment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/replyRoom"
+                android:layout_marginHorizontal="16dp"/>
+        </RelativeLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar3"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>

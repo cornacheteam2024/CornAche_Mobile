@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity() {
                 setupNavigation()
             }
         }
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.selectedItemId = R.id.dashboard
     }
 
     private fun setupView() {

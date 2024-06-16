@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="210dp"
+    android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginVertical="12dp"
     app:cardCornerRadius="10dp"
@@ -61,26 +61,6 @@
             app:layout_constraintTop_toBottomOf="@id/titleDiscussion"
             app:layout_constraintStart_toStartOf="@id/titleDiscussion"
             android:layout_marginTop="9dp"/>
-
-        <ImageView
-            android:id="@+id/replyVector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_chat_24"
-            app:layout_constraintTop_toBottomOf="@id/tvPreview"
-            app:layout_constraintStart_toStartOf="@id/tvPreview"
-            android:layout_marginTop="42dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3 Pembahasan"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toTopOf="@id/replyVector"
-            app:layout_constraintStart_toEndOf="@id/replyVector"
-            app:layout_constraintBottom_toBottomOf="@id/replyVector"
-            android:gravity="center_vertical"
-            android:layout_marginStart="9dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

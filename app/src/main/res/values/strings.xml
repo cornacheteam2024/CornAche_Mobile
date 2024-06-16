@@ -23,20 +23,101 @@
     <string name="searchHint">Search</string>
     <string name="time_chat">create at</string>
     <string name="common_rust">
-        Gejala penyakit karat memiliki ciri khas, yaitu diawalin dengan adanya lesiio kecil pada bagian daun, selanjutnya melingkar sampai memanjang. Ketika lesio berkembang, cendawan keluar dari permukaan daun dan lesio menjadi lebih memanjang dan biasanya terjadi halo kuning. Gejala lanjut terlihat adanya bisul (pustul) pada kedua permukaan daun bagian atas dan bawah dengan warna coklat kemerahan tersebar pada permukaan daun dan berubah warna menjadi hitam kecoklatan setelah teliospora berkembang seperti yang terlihat pada gambar 1. Jika infeksi penyakit dibiarkan maka akan menyebabkan daun menjadi kering dan tanaman mati.
+        Pencegahan dan Pengendalian Penyakit Karat Daun pada Tanaman Jagung (Common rust) \n\n
+
+Penyakit karat daun, yang disebabkan oleh patogen Puccinia polysora, merupakan salah satu penyakit utama pada tanaman jagung. Penyakit ini sangat mengganggu karena sering muncul pada musim hujan, menutupi daun dengan lapisan karat, sehingga daun tidak mampu melakukan fotosintesis dengan optimal. Akibatnya, proses pertumbuhan tanaman terganggu, perkembangan terhambat, dan produksi jagung menurun drastis.\n
+
+Jagung merupakan tanaman pangan utama kedua setelah padi di dunia, tumbuh baik di daerah dengan suhu panas dan dingin, dengan curah hujan serta irigasi yang memadai. Namun, sepanjang siklus hidupnya dari benih hingga benih, jagung rentan terhadap berbagai penyakit yang dapat menurunkan kualitas dan kuantitas hasil. Oleh karena itu, pengendalian penyakit merupakan faktor penting dalam meningkatkan produksi dan mutu benih jagung.\n\n
+
+Gejala dan Dampak Penyakit Karat Daun \n\n
+
+Penyakit karat daun disebabkan oleh cendawan Puccinia polysora. Spora cendawan ini menghambat proses fotosintesis dengan menempel pada permukaan daun, menyebabkan pertumbuhan tanaman melambat dan hasil produksinya rendah. Gejala umum penyakit ini adalah munculnya bercak-bercak kecil berbentuk bulat atau oval berwarna coklat hingga merah oranye pada permukaan daun atas dan bawah. Bercak ini menghasilkan uredospora yang berperan sebagai sumber inokulum, menyebar melalui angin dan menginfeksi tanaman jagung lain.\n
+
+Gejala awal berupa bisul atau pustula dengan warna coklat kemerahan, kemudian berubah menjadi hitam kecoklatan. Penyebaran cendawan seperti karat bisa meluas hingga menyerang pelepah daun dan batang, terutama pada varietas jagung yang rentan. Penyakit ini termasuk tular tanah (soil-borne) dan tular udara (air-borne), dimana spora dapat bertahan hidup di dalam tanah dan sisa tanaman. Pada tingkat serangan berat, daun akan mengering dan tanaman bisa mati. Penyakit ini dapat ditemukan dari dataran rendah hingga dataran tinggi, bahkan hingga ketinggian 1200 meter di atas permukaan laut, dengan intensitas serangan tertinggi pada musim hujan. \n\n
+
+Program Pengendalian Penyakit Karat Daun \n\n
+
+1. Pengolahan Tanah dan Penanaman: \n
+   - Lakukan pengolahan tanah maksimal dengan menambahkan kapur dolomit dan kompos atau pupuk kandang. \n
+   - Terapkan jarak tanam yang renggang untuk mengurangi kelembaban, terutama pada musim penghujan. \n\n
+2. Sanitasi Area: \n
+   - Bersihkan lahan dari sisa tanaman dan gulma yang berpotensi menjadi inang alternatif bagi spora patogen. \n
+   - Atur drainase dengan baik untuk menghindari genangan air. \n\n
+3. Pemilihan Benih Berkualitas: \n
+   - Gunakan benih jagung bermutu dan unggul yang tahan terhadap penyakit karat daun. \n\n
+4. Pemupukan yang Tepat: \n
+   - Tingkatkan dosis pupuk KCL pada pupuk dasar dari 100 kg per hektar menjadi 150 kg per hektar. \n\n
+5. Penyemprotan Pupuk Daun: \n
+   - Semprotkan pupuk daun yang mengandung kalsium dan boron pada usia tanaman 14 hari setelah tanam. \n\n
+6. Pengendalian Kimia: \n
+   - Perlakuan Benih: Gunakan fungisida yang dikombinasikan dengan insektisida sebelum penanaman. \n
+   - Perawatan Tanaman Muda: Semprotkan tanaman dengan fungisida sistemik dan kontak pada usia 7, 21, dan 42 hari setelah tanam.
+
     </string>
     <string name="healty">
         Jagung sehat tidak terkena penyakit
     </string>
     <string name="gray_leaf">
-        Penyakit bercak daun abu abu disebabkan oleh jamur Cercospora zeae-maydis. Jamur ini bertahan dalam sisa sisa tanaman di tanah dalam Waktu yang lama. Selama musim semi, spora dibawa ke daun bagian Bawah oleh percikan air hujan dan angin. Siklus hidupnya didukun oleh suhu tinggi (25 - 30 C), kelembaban tinggi (embun, kabut) dan basahnya daun untuk jangka Waktu yang lama. Cuaca panas dan kering menghambat perkembangannya. Gejalanya sedikit berbeda antar varietas tanaman yang berbeda. Jamur menyelesaikan siklus hidupnya(dari infeksi ke produksi spora baru) dalam 14 - 21 hari pada varietas yang rentan dan dalam 21 - 28 hari dalam varietas yang tahan.
+        Pencegahan dan Pengendalian Penyakit Bercak Daun (Gray Leaf Spot) pada Tanaman Jagung\n\n
+
+Pertumbuhan tanaman jagung sangat dipengaruhi oleh berbagai faktor, termasuk gangguan organisme pengganggu tanaman, pemakaian pupuk yang tidak tepat dan tidak seimbang, penggunaan pupuk organik yang belum menyeluruh, serta penerapan teknologi dan cara bercocok tanam yang belum berkembang. Untuk meningkatkan produksi tanaman jagung, penting untuk meningkatkan taraf hidup petani dan memenuhi kebutuhan pasar dengan produksi jagung yang berkualitas dan kuantitas baik.\n\n
+
+Penyakit pada tanaman, yang disebabkan oleh patogen seperti virus, bakteri, dan jamur, tidak memakan tanaman tetapi merusak proses internalnya. Hal ini mengakibatkan gangguan pertumbuhan dan perkembangan tanaman, menurunkan produksi, bahkan bisa menyebabkan kematian tanaman. Salah satu penyakit penting yang sering menyerang jagung adalah penyakit bercak daun atau Gray Leaf Spot (GLS), yang disebabkan oleh patogen Cercospora zeae-maydis.\n\n
+
+ Gejala Penyakit GLS \n\n
+Penyakit bercak daun pada jagung ditandai dengan bercak berwarna hijau kekuningan atau coklat kemerahan pada daun. Bercak ini berbentuk garis memanjang dan dapat diterawang. Dalam tahap lanjut, bercak menjadi persegi panjang. Bibit jagung yang terinfeksi dapat layu atau mati dalam waktu tiga sampai empat minggu. Jika tongkol jagung terinfeksi, biji bisa rusak dan busuk, bahkan tongkol bisa gugur. Serangan berat dapat menyebabkan kematian tanaman. \n\n
+
+Penyakit bercak daun menyebar melalui spora yang ditularkan oleh angin atau percikan air hujan. Infeksi pertama pada tanaman jagung dapat terjadi melalui angin atau percikan air hujan yang membawa spora penyakit ini. \n\n
+
+ Program Pencegahan dan Pengendalian Penyakit Bercak Daun GLS\n\n
+
+1. Pemakaian Benih Bermutu dan Unggul\n
+   - Gunakan benih yang tahan atau toleran terhadap penyakit bercak daun GLS.\n
+   - Pastikan benih tidak kadaluarsa dan sesuai dengan label kemasan yang dikeluarkan oleh BPS.\n\n
+
+2. Sanitasi Area\n
+   - Bersihkan lahan dari gulma dan sisa-sisa tanaman yang berpotensi menjadi inang bagi spora penyakit bercak daun GLS.\n\n
+
+3. Pengaturan Jarak Tanam \n
+   - Atur jarak tanam agar tidak terlalu rapat, terutama di musim hujan, untuk menjaga kelembapan yang ideal. \n\n
+
+4. Pergiliran Tanaman atau Varietas\n
+   - Lakukan pergiliran tanaman atau varietas untuk memutus siklus hidup patogen.\n\n
+
+5. Pengendalian Kimia\n
+   - Perlakuan Benih: Gunakan fungisida yang dikombinasikan dengan insektisida sebelum penanaman. Pestisida yang digunakan harus sesuai dengan yang disarankan untuk perlakuan benih.\n
+   - Pemeliharaan Tanaman Usia Muda: Lakukan penyemprotan fungisida pada umur tanaman 7, 14, 21, dan 42 hari setelah tanam. Jika memungkinkan, kombinasikan dengan insektisida dan pupuk daun. Sebelum digunakan, lakukan uji inkompatibilitas untuk melihat kesesuaian pencampuran. Penyemprotan sebaiknya dilakukan pada pagi atau sore hari ketika ada matahari.\n\n
+
+Dengan menerapkan langkah-langkah ini, diharapkan penyakit bercak daun atau GLS pada tanaman jagung dapat dicegah dan dikendalikan, sehingga produksi jagung dapat meningkat baik dari segi kualitas maupun kuantitas.
+
     </string>
     <string name="blight">
-        blight
+        Rangkaian Pengendalian Penyakit Busuk Lepah Dizoktonia (Blight)\n\n
+Untuk mengendalikan penyakit busuk lepah dizoktonia, berikut adalah langkah-langkah yang harus dilakukan:\n
+1. Kultur Teknik\n
+   - Menggunakan Benih yang Sehat: Pilih benih yang bebas dari penyakit untuk meminimalkan risiko infeksi.\n
+   - Jarak Tanam yang Ideal: Atur jarak tanam agar populasi tanaman tidak terlalu padat, terutama di musim hujan, untuk mengurangi kelembapan yang bisa menyebabkan penyakit.\n\n
+ 2. Sanitasi Area\n
+   - Kebersihan Area: Pastikan area tanam bebas dari sisa-sisa tanaman dan gulma. Hindari adanya genangan air yang dapat menjadi tempat berkembang biaknya patogen.\n\n
+ 3. Pengendalian Fisik\n
+   - Penghapusan Tanaman Sakit: Cabut dan kubur atau bakar tanaman yang terinfeksi untuk mencegah penyebaran penyakit.\n
+   - Pemangkasan Daun Bawah: Pangkas daun yang dekat dengan permukaan tanah, terutama daun dan pelepah yang menunjukkan gejala infeksi.\n\n
+ 4. Pengendalian Mekanis\n
+   - Hindari Luka pada Tanaman: Minimalkan gesekan antar daun atau dengan peralatan untuk mencegah luka yang bisa menjadi pintu masuk bagi patogen.\n
+   - Rotasi Tanaman atau Varietas: Lakukan rotasi tanaman atau varietas untuk memutus siklus hidup patogen.\n\n
+ 5. Pengendalian Hayati\n
+   - Musuh Alami: Gunakan musuh alami seperti bakteri Bacillus subtilis dan jamur Trichoderma harzianum atau Trichoderma viride untuk mengendalikan patogen secara biologis.\n\n
+ 6. Pengendalian Kimia\n
+   - Perlakuan Benih: Sebelum penanaman, perlakukan benih dengan fungisida dan insektisida untuk mencegah infeksi awal.\n
+   - Penyemprotan Fungisida: Semprot tanaman dengan fungisida sistemik dan kontak pada usia 10, 20, dan 40 hari setelah tanam untuk mengendalikan penyakit selama fase pertumbuhan.\n\n
+Dengan mengikuti rangkaian pengendalian ini, diharapkan penyakit busuk lepah dizoktonia dapat diminimalisir dan tanaman dapat tumbuh dengan sehat serta produktif.
+
     </string>
     <string name="success">login berhasil</string>
     <string name="welcome_back">selamat datang kembali</string>
     <string name="dialog_continue">login berhasil</string>
     <string name="error">gagal register silahkan isi data dengan benar</string>
     <string name="cornache">CornAche</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,44 +1,31 @@
 package com.example.cornache.adapter
 
-import android.app.Activity
-import android.content.Intent
-import android.os.Bundle
-import android.provider.ContactsContract.Data
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.cornache.GlideApp
+import com.example.cornache.MyRoomListFragment
 import com.example.cornache.data.api.response.DataItem
-import com.example.cornache.data.api.response.User
 import com.example.cornache.databinding.ItemChatBinding
-import java.text.SimpleDateFormat
-import java.util.Locale
 
-class RoomAdapter(private var roomList: ArrayList<DataItem>):RecyclerView.Adapter<RoomAdapter.MyViewHolder>() {
+class MyRoomListAdapter:ListAdapter<DataItem, MyRoomListAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     private var onItemClickCallback: OnItemClickCallback? = null
 
-    var destinationListFiltered : ArrayList<DataItem> = ArrayList()
-
-    fun setOnItemClickCallback(onItemClickCallback: RoomAdapter.OnItemClickCallback){
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
         this.onItemClickCallback = onItemClickCallback
     }
-    inner class MyViewHolder(val binding: ItemChatBinding):RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(val binding : ItemChatBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.root.setOnClickListener{
+            binding.root.setOnClickListener {
                 val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION){
-                    onItemClickCallback?.onItemClicked(roomList[position])
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClickCallback?.onItemClicked(getItem(position))
                 }
             }
         }
+
         fun bind(data: DataItem) {
             if (data.detailRoom?.updateAt == null) {
                 binding.apply {
@@ -56,32 +43,32 @@ class RoomAdapter(private var roomList: ArrayList<DataItem>):RecyclerView.Adapte
                 }
             }
         }
-
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemChatBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemChatBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return MyViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return roomList.size
-    }
-
-    fun searchDataList(searchList:ArrayList<DataItem>){
-        roomList = searchList
-        notifyDataSetChanged()
-    }
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val data = roomList[position]
-        if (data != null){
-            holder.bind(data)
-        }
+        holder.bind(getItem(position))
     }
 
     interface OnItemClickCallback{
         fun onItemClicked(data:DataItem)
     }
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DataItem>(){
+            override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
+                return oldItem.userId == newItem.userId
+            }
 
+            override fun areContentsTheSame(
+                oldItem: DataItem,
+                newItem: DataItem
+            ): Boolean {
+                return oldItem == newItem
+            }
+
+        }
+    }
 }

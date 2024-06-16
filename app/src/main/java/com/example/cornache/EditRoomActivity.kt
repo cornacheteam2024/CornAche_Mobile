@@ -59,7 +59,7 @@ class EditRoomActivity : AppCompatActivity() {
         binding.imagePlaceholder.setOnClickListener { startGallery() }
         binding.postRoom.setOnClickListener { updateRoom() }
         binding.deleteRoom.setOnClickListener { deleteRoom() }
-        setupNavigation()
+//        setupNavigation()
     }
 
     private fun deleteRoom(){
@@ -70,7 +70,7 @@ class EditRoomActivity : AppCompatActivity() {
                     is ResultState.Success -> {
                         showLoading(false)
                         showToast(result.data.message.toString())
-                        Intent(this@EditRoomActivity,RoomActivity::class.java).also {
+                        Intent(this@EditRoomActivity,HomeActivity::class.java).also {
                             it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(it)
                         }
@@ -94,7 +94,7 @@ class EditRoomActivity : AppCompatActivity() {
                         is ResultState.Loading -> showLoading(true)
                         is ResultState.Success -> {
                             showLoading(false)
-                            Intent(this@EditRoomActivity,RoomActivity::class.java).also {
+                            Intent(this@EditRoomActivity,HomeActivity::class.java).also {
                                 it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(it)
                             }
@@ -127,35 +127,35 @@ class EditRoomActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupNavigation() {
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigationView.selectedItemId = R.id.navigation_chat
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_history -> {
-                    startActivity(Intent(this, HistoryActivity::class.java))
-                    true
-                }
-                R.id.navigation_detect_disease -> {
-                    startActivity(Intent(this, AnalyzeActivity::class.java))
-                    true
-                }
-                R.id.navigation_edit_profile -> {
-                    startActivity(Intent(this, EditProfileActivity::class.java))
-                    true
-                }
-                R.id.navigation_logout -> {
-                    logout()
-                    true
-                }
-                R.id.navigation_chat -> {
-                    startActivity(Intent(this, RoomActivity::class.java))
-                    true
-                }
-                else -> false
-            }
-        }
-    }
+//    private fun setupNavigation() {
+//        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+//        bottomNavigationView.selectedItemId = R.id.navigation_chat
+//        bottomNavigationView.setOnItemSelectedListener { item ->
+//            when (item.itemId) {
+//                R.id.navigation_history -> {
+//                    startActivity(Intent(this, HistoryActivity::class.java))
+//                    true
+//                }
+//                R.id.navigation_detect_disease -> {
+//                    startActivity(Intent(this, AnalyzeActivity::class.java))
+//                    true
+//                }
+//                R.id.navigation_edit_profile -> {
+//                    startActivity(Intent(this, EditProfileActivity::class.java))
+//                    true
+//                }
+//                R.id.navigation_logout -> {
+//                    logout()
+//                    true
+//                }
+//                R.id.navigation_chat -> {
+//                    startActivity(Intent(this, RoomActivity::class.java))
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
+//    }
 
     private fun logout() {
         lifecycleScope.launch {

@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
                                             setTitle(getString(R.string.success))
                                             setMessage(getString(R.string.welcome_back) + " " + "${user.username}")
                                             setPositiveButton(getString(R.string.dialog_continue)) { _, _ ->
-                                                val intent = Intent(this@LoginActivity, RoomActivity::class.java)
+                                                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                                                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                                 startActivity(intent)
                                                 finish()

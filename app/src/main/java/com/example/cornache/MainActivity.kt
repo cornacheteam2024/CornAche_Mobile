@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                 if (!user.isLogin) {
                     startActivity(Intent(this@MainActivity, LoginActivity::class.java))
                 } else {
-                    startActivity(Intent(this@MainActivity, RoomActivity::class.java)) // Ganti dengan activity utama
+                    startActivity(Intent(this@MainActivity, HomeActivity::class.java)) // Ganti dengan activity utama
                 }
                 finish()
             }

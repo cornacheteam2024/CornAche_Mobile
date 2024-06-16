@@ -36,6 +36,9 @@ class ResultActivity : AppCompatActivity() {
         }
         val bundle = intent.getBundleExtra(DATA)
         val webView = binding.webView
+//        webView.settings.loadWithOverviewMode = true
+//        webView.settings.useWideViewPort = true
+        webView.settings.javaScriptEnabled = true
         val nama = bundle?.getString("nama")
         val gambar = bundle?.getString("gambar")
         binding.apply {
@@ -48,9 +51,8 @@ class ResultActivity : AppCompatActivity() {
                 tvDisseaseName.text = "Common rust"
                 desc.text = getString(R.string.common_rust)
             }
-            val video = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/bP8wBKISWWY?si=BnkamTyzZlKm0qRO\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+            val video = "<iframe width=\"300\" height=\"170\"  src=\"https://www.youtube.com/embed/eKQO4-kqLho?si=hAl3k6icYHBo1Ryu\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
             webView.loadData(video,"text/html", "utf-8")
-            webView.settings.javaScriptEnabled = true
             webView.webChromeClient
         }
         else if (nama == "Healthy"){
@@ -64,9 +66,8 @@ class ResultActivity : AppCompatActivity() {
                 tvDisseaseName.text = "Gray leaf spot"
                 desc.text = getString(R.string.gray_leaf)
             }
-            val video = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/1foL4zGaDAE?si=_YK7J9zyWwvB-Z64\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+            val video = "<iframe width=\"300\" height=\"170\" src=\"https://www.youtube.com/embed/1foL4zGaDAE?si=_YK7J9zyWwvB-Z64\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
             webView.loadData(video,"text/html", "utf-8")
-            webView.settings.javaScriptEnabled = true
             webView.webChromeClient
         }
         else {
@@ -74,41 +75,9 @@ class ResultActivity : AppCompatActivity() {
                 tvDisseaseName.text = "Blight"
                 desc.text = getString(R.string.blight)
             }
-            val video = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/-Ffu_xiLrdU?si=hhjeepHCjDaAbJwi\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+            val video = "<iframe width=\"300\" height=\"170\" src=\"https://www.youtube.com/embed/-Ffu_xiLrdU?si=hhjeepHCjDaAbJwi\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
             webView.loadData(video,"text/html", "utf-8")
-            webView.settings.javaScriptEnabled = true
             webView.webChromeClient
-        }
-        setupNavigation()
-    }
-
-    private fun setupNavigation() {
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigationView.selectedItemId = R.id.navigation_detect_disease
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_history -> {
-                    startActivity(Intent(this, HistoryActivity::class.java))
-                    true
-                }
-                R.id.navigation_detect_disease -> {
-                    startActivity(Intent(this, AnalyzeActivity::class.java))
-                    true
-                }
-                R.id.navigation_edit_profile -> {
-                    startActivity(Intent(this, EditProfileActivity::class.java))
-                    true
-                }
-                R.id.navigation_logout -> {
-                    logout()
-                    true
-                }
-                R.id.navigation_chat -> {
-                    startActivity(Intent(this, RoomActivity::class.java))
-                    true
-                }
-                else -> false
-            }
         }
     }
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_corn_theme"
+    tools:context=".HistoryFragment">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <TextView
+           android:id="@+id/tvHistory"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="@string/history"
+           android:textSize="36sp"
+           android:textStyle="bold"
+           android:gravity="center"
+           app:layout_constraintTop_toTopOf="parent"
+           android:layout_marginTop="18dp"
+           android:textColor="@color/white"/>
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/rvHistory"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_below="@id/tvHistory"
+           android:padding="12dp"
+           android:layout_marginTop="16dp"/>
+
+       <ProgressBar
+           android:id="@+id/progressBar3"
+           style="?android:attr/progressBarStyle"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:visibility="gone"
+           android:layout_centerInParent="true"/>
+
+   </RelativeLayout>
+
+</FrameLayout>

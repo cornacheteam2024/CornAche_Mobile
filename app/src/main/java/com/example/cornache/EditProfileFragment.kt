@@ -98,6 +98,7 @@ class EditProfileFragment : Fragment() {
         }
     }
 
+
     private fun startGallery(){
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }

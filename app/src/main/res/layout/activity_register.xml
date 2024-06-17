@@ -70,6 +70,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:hint="Confirm Password"
+        android:textColor="@color/black"
         android:background="@drawable/bg_edit_text"
         android:padding="10dp"
         android:drawablePadding="10dp"

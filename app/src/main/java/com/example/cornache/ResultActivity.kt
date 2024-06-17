@@ -51,7 +51,7 @@ class ResultActivity : AppCompatActivity() {
                 tvDisseaseName.text = "Common rust"
                 desc.text = getString(R.string.common_rust)
             }
-            val video = "<iframe width=\"300\" height=\"170\"  src=\"https://www.youtube.com/embed/eKQO4-kqLho?si=hAl3k6icYHBo1Ryu\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+            val video = "<iframe width=\"100%\" height=\"100%\"  src=\"https://www.youtube.com/embed/eKQO4-kqLho?si=hAl3k6icYHBo1Ryu\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
             webView.loadData(video,"text/html", "utf-8")
             webView.webChromeClient
         }
@@ -60,13 +60,16 @@ class ResultActivity : AppCompatActivity() {
                 tvDisseaseName.text = "Sehat"
                 desc.text = getString(R.string.healty)
             }
+            val video = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/AHpsLJ-18mg?si=STOzm__EvBKoHIVT\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+            webView.loadData(video,"text/html", "utf-8")
+            webView.webChromeClient
         }
         else if (nama == "Gray_Leaf_Spot"){
             binding.apply {
                 tvDisseaseName.text = "Gray leaf spot"
                 desc.text = getString(R.string.gray_leaf)
             }
-            val video = "<iframe width=\"300\" height=\"170\" src=\"https://www.youtube.com/embed/1foL4zGaDAE?si=_YK7J9zyWwvB-Z64\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+            val video = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/1foL4zGaDAE?si=_YK7J9zyWwvB-Z64\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
             webView.loadData(video,"text/html", "utf-8")
             webView.webChromeClient
         }
@@ -75,7 +78,7 @@ class ResultActivity : AppCompatActivity() {
                 tvDisseaseName.text = "Blight"
                 desc.text = getString(R.string.blight)
             }
-            val video = "<iframe width=\"300\" height=\"170\" src=\"https://www.youtube.com/embed/-Ffu_xiLrdU?si=hhjeepHCjDaAbJwi\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+            val video = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/-Ffu_xiLrdU?si=hhjeepHCjDaAbJwi\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
             webView.loadData(video,"text/html", "utf-8")
             webView.webChromeClient
         }

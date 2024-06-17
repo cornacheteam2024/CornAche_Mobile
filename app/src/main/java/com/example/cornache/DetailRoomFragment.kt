@@ -16,7 +16,6 @@ import com.example.cornache.adapter.CommentsAdapter
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
 import com.example.cornache.data.dataStore
-import com.example.cornache.databinding.ActivityDetailRoomBinding
 import com.example.cornache.databinding.FragmentDetailRoomBinding
 import com.example.cornache.viewmodel.DetailRoomViewModel
 import com.example.cornache.viewmodel.ViewModelFactory

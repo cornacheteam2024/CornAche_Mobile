@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
 import com.example.cornache.data.dataStore
-import com.example.cornache.databinding.ActivityAnalyzeBinding
 import com.example.cornache.databinding.FragmentAnalyzeBinding
 import com.example.cornache.viewmodel.AnalyzeViewModel
 import com.example.cornache.viewmodel.ViewModelFactory

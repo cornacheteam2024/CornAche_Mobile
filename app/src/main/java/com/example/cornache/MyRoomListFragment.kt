@@ -17,7 +17,6 @@ import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
 import com.example.cornache.data.api.response.DataItem
 import com.example.cornache.data.dataStore
-import com.example.cornache.databinding.ActivityMyRoomListBinding
 import com.example.cornache.databinding.FragmentMyRoomListBinding
 import com.example.cornache.viewmodel.MyRoomListViewModel
 import com.example.cornache.viewmodel.ViewModelFactory

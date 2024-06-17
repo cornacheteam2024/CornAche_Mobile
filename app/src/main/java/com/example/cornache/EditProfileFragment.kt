@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cornache.data.LoginPreference
 import com.example.cornache.data.ResultState
 import com.example.cornache.data.dataStore
-import com.example.cornache.databinding.ActivityEditProfileBinding
 import com.example.cornache.databinding.FragmentEditProfileBinding
 import com.example.cornache.viewmodel.EditProfileViewModel
 import com.example.cornache.viewmodel.ViewModelFactory

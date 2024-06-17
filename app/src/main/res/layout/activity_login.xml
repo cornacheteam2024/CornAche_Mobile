@@ -26,7 +26,7 @@
         android:layout_marginTop="10dp"
         android:text="Cornache"
         android:textSize="24sp"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textStyle="bold"/>
 
     <!-- Username Field -->
@@ -71,7 +71,7 @@
         android:layout_marginEnd="30dp"
         android:text="@string/login"
         android:backgroundTint="#4CAF50"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/black" />
 
     <!-- Progress Bar -->
     <ProgressBar
@@ -92,6 +92,6 @@
         android:layout_marginEnd="30dp"
         android:text="Belum punya akun? Register di sini"
         android:backgroundTint="#FFD700"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/black" />
 
 </RelativeLayout>

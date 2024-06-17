@@ -46,7 +46,7 @@
                         android:text="@string/username"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:gravity="center_vertical"/>
                     <TextView
                         android:id="@+id/tvCreateAt"
@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/time_chat"
                         android:textSize="13sp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:gravity="center_horizontal"/>
                 </LinearLayout>
             </LinearLayout>
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ini judul"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginStart="16dp"
@@ -78,7 +78,7 @@
                 android:textSize="14sp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="9dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_marginBottom="16dp"
                 android:textStyle="bold"/>
 
@@ -106,7 +106,7 @@
                 android:layout_marginTop="12dp"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="center_vertical"
                 android:layout_marginStart="16dp"/>
 

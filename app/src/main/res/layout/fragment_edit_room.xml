@@ -24,7 +24,7 @@
                 android:text="Diskusi saya"
                 android:textStyle="bold"
                 android:textSize="24sp"
-                android:textColor="@android:color/white"
+                android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"/>
 
@@ -36,7 +36,7 @@
                 android:layout_marginTop="12dp"
                 android:text="Judul"
                 android:textSize="14sp"
-                android:textColor="@android:color/white"/>
+                android:textColor="@color/black"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/judulEditText"
@@ -68,7 +68,7 @@
                 android:layout_marginTop="12dp"
                 android:text="Dekripsi"
                 android:textSize="14sp"
-                android:textColor="@android:color/white"/>
+                android:textColor="@color/black"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/DeskripsiEditText"
@@ -107,28 +107,18 @@
                 android:textColor="@color/white"
                 android:backgroundTint="@color/green"
                 app:cornerRadius="10dp"
-                android:layout_marginVertical="16dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center"/>
-
-            <TextView
-                android:id="@+id/hapus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Atau hapus diskusi ini"
-                android:layout_gravity="center"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"/>
 
             <Button
                 android:id="@+id/deleteRoom"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="Hapus diskusi ini"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/green"
+                android:text="Hapus diskusi disini"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/cornYellow"
                 app:cornerRadius="10dp"
-                android:layout_marginVertical="16dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center"/>
         </LinearLayout>
     </ScrollView>

@@ -76,22 +76,26 @@ class EditProfileFragment : Fragment() {
             }
         }
     }
-    private fun updateDetailUser(){
-        currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri,requireContext())
-            val updatedUsername = binding?.username?.text.toString()
-            viewModel.updateDetailUser(updatedUsername,imageFile).observe(requireActivity()){result ->
-                if (result!=null){
-                    when(result){
-                        is ResultState.Loading -> showLoading(true)
-                        is ResultState.Success -> {
-                            showLoading(false)
-                            getDetailUser()
-                        }
-                        is ResultState.Error -> {
-                            showLoading(false)
-                            Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
-                        }
+    private fun updateDetailUser() {
+        val updatedUsername = binding?.username?.text.toString().takeIf { it.isNotBlank() }
+        val imageFile = currentImageUri?.let { uri -> uriToFile(uri, requireContext()) }
+
+        if (updatedUsername == null) {
+            Toast.makeText(requireContext(), "Username cannot be empty", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        viewModel.updateDetailUser(updatedUsername, imageFile).observe(requireActivity()) { result ->
+            if (result != null) {
+                when (result) {
+                    is ResultState.Loading -> showLoading(true)
+                    is ResultState.Success -> {
+                        showLoading(false)
+                        getDetailUser()
+                    }
+                    is ResultState.Error -> {
+                        showLoading(false)
+                        Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                     }
                 }
             }

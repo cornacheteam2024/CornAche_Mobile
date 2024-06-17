@@ -17,7 +17,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Diskusi Baru"
@@ -27,7 +27,7 @@
                 android:layout_marginTop="16dp"/>
 
             <TextView
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:id="@+id/judul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:id="@+id/deskripsi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Upload Gambar"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:textSize="20sp"/>

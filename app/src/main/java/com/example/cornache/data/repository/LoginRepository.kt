@@ -33,25 +33,34 @@ class LoginRepository private constructor(
         pref.logout()
     }
 
-    fun editProfile(username:String,imageFile:File) = liveData {
+    fun editProfile(username: String, imageFile: File?) = liveData {
         emit(ResultState.Loading)
         val userId = runBlocking { getSession().first().userId }
         val requestBody = username.toRequestBody("text/plain".toMediaType())
-        val requestImageFile = imageFile.asRequestBody("image/jpg".toMediaType())
-        val multipartBody = MultipartBody.Part.createFormData(
-            "avatar_image",
-            imageFile.name,
-            requestImageFile
-        )
+
+        val multipartBody = imageFile?.let {
+            val requestImageFile = it.asRequestBody("image/jpg".toMediaType())
+            MultipartBody.Part.createFormData(
+                "avatar_image",
+                it.name,
+                requestImageFile
+            )
+        }
+
         try {
-            val successResponse = apiService.updateProfile(userId,requestBody,multipartBody)
+            val successResponse = if (multipartBody != null) {
+                apiService.updateProfile(userId, requestBody, multipartBody)
+            } else {
+                apiService.updateProfileWithoutImage(userId, requestBody)
+            }
             emit(ResultState.Success(successResponse))
-        }catch (e:HttpException){
+        } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
-            val errorResponse = Gson().fromJson(errorBody,ErrorResponse::class.java)
+            val errorResponse = Gson().fromJson(errorBody, ErrorResponse::class.java)
             emit(ResultState.Error(errorResponse.message.toString()))
         }
     }
+
 
     fun register(username:String, password: String, confirmPass:String) = liveData {
         emit(ResultState.Loading)

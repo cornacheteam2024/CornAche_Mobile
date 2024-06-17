@@ -54,6 +54,13 @@ interface ApiService {
     ):EditProfileResponse
 
     @Multipart
+    @PUT("profile/{user_id}")
+    suspend fun updateProfileWithoutImage(
+        @Path("user_id") userId: String,
+        @Part("username") username: RequestBody
+    ): EditProfileResponse
+
+    @Multipart
     @PUT("room/{room_id}")
     suspend fun updateRoom(
         @Path("room_id") roomId:String,

@@ -30,12 +30,19 @@ class RegisterActivity : AppCompatActivity() {
         val factory = ViewModelFactory.getInstance(this, loginPreference)
         viewModel= ViewModelProvider(this, factory)[RegisterViewModel::class.java]
         binding.registerBtn.setOnClickListener { registerUser() }
+        binding.btnLogin.setOnClickListener {
+            startActivity(Intent(this@RegisterActivity,LoginActivity::class.java))
+        }
     }
 
     private fun registerUser(){
         val username = binding.usernameEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
         val confirmPass = binding.confirmPassEditText.text.toString()
+        if (username.isEmpty() || password.isEmpty() || confirmPass.isEmpty()) {
+            showToast("mohon isi semua field")
+            return
+        }
         viewModel.registerUser(username,password, confirmPass).observe(this){resut ->
             if (resut != null) {
                 when(resut){

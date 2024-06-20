@@ -25,4 +25,4 @@ git clone https://github.com/cornacheteam2024/CornAche_Mobile.git
 ./gradlew build
 ```
 ##
-By using CornAche, keeping your maize plants healthy becomes easier and more efficient. Protect your crops and increase your yield with the advanced technology at your fingertips!
+By using Cornache, keeping your maize plants healthy becomes easier and more efficient. Protect your crops and increase your yield with the advanced technology at your fingertips!
